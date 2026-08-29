@@ -1,0 +1,2081 @@
+lockfile_version: '1'
+generated_at: '2026-08-29T01:40:20.837807+00:00'
+apm_version: 0.28.0
+dependencies:
+- repo_url: denoland/skills
+  name: deno
+  host: github.com
+  resolved_commit: d5f6ace6b113aee71ba5286612fa1bde34c7d102
+  resolved_ref: main
+  version: unknown
+  virtual_path: skills/deno
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/deno
+  - .agents/skills/deno/SKILL.md
+  - .agents/skills/deno/references/CLI.md
+  - .claude/skills/deno
+  - .claude/skills/deno/SKILL.md
+  - .claude/skills/deno/references/CLI.md
+  deployed_file_hashes:
+    .agents/skills/deno/SKILL.md: sha256:96bcaefb9ec0b388fcf0fbffbc7aa5d566860076f706ab3972f7f5fc59494527
+    .agents/skills/deno/references/CLI.md: sha256:d95e2b119f2de24c9962092a38abdb1565b93c0a2d78e42d883d097cec62b276
+    .claude/skills/deno/SKILL.md: sha256:96bcaefb9ec0b388fcf0fbffbc7aa5d566860076f706ab3972f7f5fc59494527
+    .claude/skills/deno/references/CLI.md: sha256:d95e2b119f2de24c9962092a38abdb1565b93c0a2d78e42d883d097cec62b276
+  content_hash: sha256:521160aba6a974f19a0f768f76337b7d524085288a6b07e939bb391b01667238
+- repo_url: github/awesome-copilot
+  name: git-commit
+  host: github.com
+  resolved_commit: f11a4e441c5ff061b4f8ae37952be8c602e4034e
+  resolved_ref: main
+  version: unknown
+  virtual_path: skills/git-commit
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/git-commit
+  - .agents/skills/git-commit/SKILL.md
+  - .claude/skills/git-commit
+  - .claude/skills/git-commit/SKILL.md
+  deployed_file_hashes:
+    .agents/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+    .claude/skills/git-commit/SKILL.md: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+  content_hash: sha256:2607fc60629b82b257136dd2a7a373f0a4466c0b49df7746d845d59313c99b21
+- repo_url: ludo-technologies/python-best-practices
+  name: coding-standards
+  host: github.com
+  resolved_commit: 5202c854f211dff8f5255fa78691c193c8b26a4b
+  resolved_ref: main
+  version: unknown
+  virtual_path: skills/coding-standards
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/coding-standards
+  - .agents/skills/coding-standards/README.md
+  - .agents/skills/coding-standards/SKILL.md
+  - .agents/skills/coding-standards/metadata.json
+  - .agents/skills/coding-standards/rules/_sections.md
+  - .agents/skills/coding-standards/rules/_template.md
+  - .agents/skills/coding-standards/rules/async-context-manager.md
+  - .agents/skills/coding-standards/rules/async-create-task.md
+  - .agents/skills/coding-standards/rules/async-gather.md
+  - .agents/skills/coding-standards/rules/async-semaphore.md
+  - .agents/skills/coding-standards/rules/design-dependency-injection.md
+  - .agents/skills/coding-standards/rules/design-early-return.md
+  - .agents/skills/coding-standards/rules/design-no-global-singleton.md
+  - .agents/skills/coding-standards/rules/design-philosophy.md
+  - .agents/skills/coding-standards/rules/design-pure-functions.md
+  - .agents/skills/coding-standards/rules/design-single-responsibility.md
+  - .agents/skills/coding-standards/rules/doc-docstring.md
+  - .agents/skills/coding-standards/rules/doc-type-hints.md
+  - .agents/skills/coding-standards/rules/error-no-silent-exceptions.md
+  - .agents/skills/coding-standards/rules/oop-composition-over-inheritance.md
+  - .agents/skills/coding-standards/rules/oop-dataclass.md
+  - .agents/skills/coding-standards/rules/oop-property.md
+  - .agents/skills/coding-standards/rules/oop-protocol.md
+  - .agents/skills/coding-standards/rules/perf-dict-get.md
+  - .agents/skills/coding-standards/rules/perf-generator-expression.md
+  - .agents/skills/coding-standards/rules/perf-list-comprehension.md
+  - .agents/skills/coding-standards/rules/perf-set-lookup.md
+  - .agents/skills/coding-standards/rules/perf-str-join.md
+  - .agents/skills/coding-standards/rules/solid-isp.md
+  - .agents/skills/coding-standards/rules/solid-lsp.md
+  - .agents/skills/coding-standards/rules/solid-ocp.md
+  - .agents/skills/coding-standards/rules/validation-pydantic.md
+  - .agents/skills/coding-standards/tooling.md
+  - .claude/skills/coding-standards
+  - .claude/skills/coding-standards/README.md
+  - .claude/skills/coding-standards/SKILL.md
+  - .claude/skills/coding-standards/metadata.json
+  - .claude/skills/coding-standards/rules/_sections.md
+  - .claude/skills/coding-standards/rules/_template.md
+  - .claude/skills/coding-standards/rules/async-context-manager.md
+  - .claude/skills/coding-standards/rules/async-create-task.md
+  - .claude/skills/coding-standards/rules/async-gather.md
+  - .claude/skills/coding-standards/rules/async-semaphore.md
+  - .claude/skills/coding-standards/rules/design-dependency-injection.md
+  - .claude/skills/coding-standards/rules/design-early-return.md
+  - .claude/skills/coding-standards/rules/design-no-global-singleton.md
+  - .claude/skills/coding-standards/rules/design-philosophy.md
+  - .claude/skills/coding-standards/rules/design-pure-functions.md
+  - .claude/skills/coding-standards/rules/design-single-responsibility.md
+  - .claude/skills/coding-standards/rules/doc-docstring.md
+  - .claude/skills/coding-standards/rules/doc-type-hints.md
+  - .claude/skills/coding-standards/rules/error-no-silent-exceptions.md
+  - .claude/skills/coding-standards/rules/oop-composition-over-inheritance.md
+  - .claude/skills/coding-standards/rules/oop-dataclass.md
+  - .claude/skills/coding-standards/rules/oop-property.md
+  - .claude/skills/coding-standards/rules/oop-protocol.md
+  - .claude/skills/coding-standards/rules/perf-dict-get.md
+  - .claude/skills/coding-standards/rules/perf-generator-expression.md
+  - .claude/skills/coding-standards/rules/perf-list-comprehension.md
+  - .claude/skills/coding-standards/rules/perf-set-lookup.md
+  - .claude/skills/coding-standards/rules/perf-str-join.md
+  - .claude/skills/coding-standards/rules/solid-isp.md
+  - .claude/skills/coding-standards/rules/solid-lsp.md
+  - .claude/skills/coding-standards/rules/solid-ocp.md
+  - .claude/skills/coding-standards/rules/validation-pydantic.md
+  - .claude/skills/coding-standards/tooling.md
+  deployed_file_hashes:
+    .agents/skills/coding-standards/README.md: sha256:b1beca6daf42671c2c9b51140e16144277d49a6ac81c9e557b3307cfa88e2422
+    .agents/skills/coding-standards/SKILL.md: sha256:03020b77bd47cf15fa39482ec94afbd03c296d26b8f31744ddf248a935bb500e
+    .agents/skills/coding-standards/metadata.json: sha256:bd60f5006359042fc5afd734aa79e589b1dd4cea57a0410a968fbe2413b91ec9
+    .agents/skills/coding-standards/rules/_sections.md: sha256:cf878def0493a794850a8f0a9da5633f30046fd962a75fe7e50210a7ff8e250a
+    .agents/skills/coding-standards/rules/_template.md: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+    .agents/skills/coding-standards/rules/async-context-manager.md: sha256:c0cf8c8d09c4414849c23908b6c2f42d78419b253e4176c7570306284eec8ef2
+    .agents/skills/coding-standards/rules/async-create-task.md: sha256:1bec0e6f6f7c5b9c6b0298afc9143f10981034ef7288f666b906b075b92d52d9
+    .agents/skills/coding-standards/rules/async-gather.md: sha256:dd3e7d967b1d12ccea4544cb776589e1681ac9b3386b7f8c98dd6839e9d0f6b1
+    .agents/skills/coding-standards/rules/async-semaphore.md: sha256:ec5337a0fc99350854d76909d11135d821b48d7d79648891746518e309f2f4cf
+    .agents/skills/coding-standards/rules/design-dependency-injection.md: sha256:44ccaa14795bce2f2e9ae65290bba0cd3f05dcc402ec4115348f2a90b20c4c10
+    .agents/skills/coding-standards/rules/design-early-return.md: sha256:34f9866ce558e8edfffb77ea68b9c14535b1e2572387d174ae52264f24aee16b
+    .agents/skills/coding-standards/rules/design-no-global-singleton.md: sha256:697101c9844ef6aea4e887e8a50f6d194496cc4abb550d4dd239ac4950972577
+    .agents/skills/coding-standards/rules/design-philosophy.md: sha256:d1baf7095dd1593c62b251be5192ee086fe73e0dba3630a1fddf8bb45ca8592c
+    .agents/skills/coding-standards/rules/design-pure-functions.md: sha256:581abb03edca17c4752f9ff4858e312258a86b63348a44b79da9d907ad3296e9
+    .agents/skills/coding-standards/rules/design-single-responsibility.md: sha256:f0852cfa8ad507b6834ee56df81a4eebd74a6ec3884c7d07c9ee164eb7e88e75
+    .agents/skills/coding-standards/rules/doc-docstring.md: sha256:8102883b5c74bbf8981dd7396569b4e41bc13a1e17b510d27695f49e14e6b6e9
+    .agents/skills/coding-standards/rules/doc-type-hints.md: sha256:f67b02cbd17926caaed9469fca661fe0f59e7edc7bb5e99092d69b0eda62bebe
+    .agents/skills/coding-standards/rules/error-no-silent-exceptions.md: sha256:c493e39890fc5260ef7532092faa33ad938a92a0a675c8e50af0038d00434501
+    .agents/skills/coding-standards/rules/oop-composition-over-inheritance.md: sha256:70d8b47ee0ad72a0a13ed91357de85e8ea21e8a3569ddd94b0d3ada6a632646d
+    .agents/skills/coding-standards/rules/oop-dataclass.md: sha256:05e7c3bcdca9edaf9aa014576e046daad01dbd4cb242823001ac3858bf0d92cb
+    .agents/skills/coding-standards/rules/oop-property.md: sha256:ed7d1c78178f806626215b76a5e71f4f5c3bf1b1cf2b0dee695fb261ff130af0
+    .agents/skills/coding-standards/rules/oop-protocol.md: sha256:14d4d0a1c28507fbb78ca81d2be538a6bb5d68ad161e517e6984449edb540f88
+    .agents/skills/coding-standards/rules/perf-dict-get.md: sha256:0d29ca7b027c26207591ff18c109463c7078ce73b665d78d8ca4083d8c5a5648
+    .agents/skills/coding-standards/rules/perf-generator-expression.md: sha256:5efc2175828222333fe778fdd47e043b1a713659175749fdce9f0b7c9de2a218
+    .agents/skills/coding-standards/rules/perf-list-comprehension.md: sha256:5a39ea140f38c89c34c2d6fc0d1c116804053e3622a2f9c070a0be647006b4ea
+    .agents/skills/coding-standards/rules/perf-set-lookup.md: sha256:eb9ae51feb7f414d9cf32e0391902e4e94d8a0448c05b371af4d7018d9e38daf
+    .agents/skills/coding-standards/rules/perf-str-join.md: sha256:7c1b8a9ce365054b7b4361713a2386366878090dfb7533eb24c10adc3c5c61ba
+    .agents/skills/coding-standards/rules/solid-isp.md: sha256:da179a6f3405c6fb74606618b5d5042d9d4bb6fe2ad35d67ab6a64e38a05626b
+    .agents/skills/coding-standards/rules/solid-lsp.md: sha256:92fcd175669e44bdf9cc461585f41fa4dfd188cf78e3a0d937a008e18b9f997c
+    .agents/skills/coding-standards/rules/solid-ocp.md: sha256:babd2bcf202ef41d4ea001892a4b05ba399b4667b0f29ea6e24b42976a44722c
+    .agents/skills/coding-standards/rules/validation-pydantic.md: sha256:7e0a2551504efe60a04b51672c0fcdd58da493e4e94224089caef9d2c4d511e2
+    .agents/skills/coding-standards/tooling.md: sha256:22f1a8af5c57a43cad032382217492162c039e8c7f99c71d84f5950af430a634
+    .claude/skills/coding-standards/README.md: sha256:b1beca6daf42671c2c9b51140e16144277d49a6ac81c9e557b3307cfa88e2422
+    .claude/skills/coding-standards/SKILL.md: sha256:03020b77bd47cf15fa39482ec94afbd03c296d26b8f31744ddf248a935bb500e
+    .claude/skills/coding-standards/metadata.json: sha256:bd60f5006359042fc5afd734aa79e589b1dd4cea57a0410a968fbe2413b91ec9
+    .claude/skills/coding-standards/rules/_sections.md: sha256:cf878def0493a794850a8f0a9da5633f30046fd962a75fe7e50210a7ff8e250a
+    .claude/skills/coding-standards/rules/_template.md: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+    .claude/skills/coding-standards/rules/async-context-manager.md: sha256:c0cf8c8d09c4414849c23908b6c2f42d78419b253e4176c7570306284eec8ef2
+    .claude/skills/coding-standards/rules/async-create-task.md: sha256:1bec0e6f6f7c5b9c6b0298afc9143f10981034ef7288f666b906b075b92d52d9
+    .claude/skills/coding-standards/rules/async-gather.md: sha256:dd3e7d967b1d12ccea4544cb776589e1681ac9b3386b7f8c98dd6839e9d0f6b1
+    .claude/skills/coding-standards/rules/async-semaphore.md: sha256:ec5337a0fc99350854d76909d11135d821b48d7d79648891746518e309f2f4cf
+    .claude/skills/coding-standards/rules/design-dependency-injection.md: sha256:44ccaa14795bce2f2e9ae65290bba0cd3f05dcc402ec4115348f2a90b20c4c10
+    .claude/skills/coding-standards/rules/design-early-return.md: sha256:34f9866ce558e8edfffb77ea68b9c14535b1e2572387d174ae52264f24aee16b
+    .claude/skills/coding-standards/rules/design-no-global-singleton.md: sha256:697101c9844ef6aea4e887e8a50f6d194496cc4abb550d4dd239ac4950972577
+    .claude/skills/coding-standards/rules/design-philosophy.md: sha256:d1baf7095dd1593c62b251be5192ee086fe73e0dba3630a1fddf8bb45ca8592c
+    .claude/skills/coding-standards/rules/design-pure-functions.md: sha256:581abb03edca17c4752f9ff4858e312258a86b63348a44b79da9d907ad3296e9
+    .claude/skills/coding-standards/rules/design-single-responsibility.md: sha256:f0852cfa8ad507b6834ee56df81a4eebd74a6ec3884c7d07c9ee164eb7e88e75
+    .claude/skills/coding-standards/rules/doc-docstring.md: sha256:8102883b5c74bbf8981dd7396569b4e41bc13a1e17b510d27695f49e14e6b6e9
+    .claude/skills/coding-standards/rules/doc-type-hints.md: sha256:f67b02cbd17926caaed9469fca661fe0f59e7edc7bb5e99092d69b0eda62bebe
+    .claude/skills/coding-standards/rules/error-no-silent-exceptions.md: sha256:c493e39890fc5260ef7532092faa33ad938a92a0a675c8e50af0038d00434501
+    .claude/skills/coding-standards/rules/oop-composition-over-inheritance.md: sha256:70d8b47ee0ad72a0a13ed91357de85e8ea21e8a3569ddd94b0d3ada6a632646d
+    .claude/skills/coding-standards/rules/oop-dataclass.md: sha256:05e7c3bcdca9edaf9aa014576e046daad01dbd4cb242823001ac3858bf0d92cb
+    .claude/skills/coding-standards/rules/oop-property.md: sha256:ed7d1c78178f806626215b76a5e71f4f5c3bf1b1cf2b0dee695fb261ff130af0
+    .claude/skills/coding-standards/rules/oop-protocol.md: sha256:14d4d0a1c28507fbb78ca81d2be538a6bb5d68ad161e517e6984449edb540f88
+    .claude/skills/coding-standards/rules/perf-dict-get.md: sha256:0d29ca7b027c26207591ff18c109463c7078ce73b665d78d8ca4083d8c5a5648
+    .claude/skills/coding-standards/rules/perf-generator-expression.md: sha256:5efc2175828222333fe778fdd47e043b1a713659175749fdce9f0b7c9de2a218
+    .claude/skills/coding-standards/rules/perf-list-comprehension.md: sha256:5a39ea140f38c89c34c2d6fc0d1c116804053e3622a2f9c070a0be647006b4ea
+    .claude/skills/coding-standards/rules/perf-set-lookup.md: sha256:eb9ae51feb7f414d9cf32e0391902e4e94d8a0448c05b371af4d7018d9e38daf
+    .claude/skills/coding-standards/rules/perf-str-join.md: sha256:7c1b8a9ce365054b7b4361713a2386366878090dfb7533eb24c10adc3c5c61ba
+    .claude/skills/coding-standards/rules/solid-isp.md: sha256:da179a6f3405c6fb74606618b5d5042d9d4bb6fe2ad35d67ab6a64e38a05626b
+    .claude/skills/coding-standards/rules/solid-lsp.md: sha256:92fcd175669e44bdf9cc461585f41fa4dfd188cf78e3a0d937a008e18b9f997c
+    .claude/skills/coding-standards/rules/solid-ocp.md: sha256:babd2bcf202ef41d4ea001892a4b05ba399b4667b0f29ea6e24b42976a44722c
+    .claude/skills/coding-standards/rules/validation-pydantic.md: sha256:7e0a2551504efe60a04b51672c0fcdd58da493e4e94224089caef9d2c4d511e2
+    .claude/skills/coding-standards/tooling.md: sha256:22f1a8af5c57a43cad032382217492162c039e8c7f99c71d84f5950af430a634
+  content_hash: sha256:ea665ee83c074df1b3b3ec0007d9334ef48e4bb41f1514a584d09f4b7efd832b
+- repo_url: ludo-technologies/python-best-practices
+  name: testing
+  host: github.com
+  resolved_commit: 5202c854f211dff8f5255fa78691c193c8b26a4b
+  resolved_ref: main
+  version: unknown
+  virtual_path: skills/testing
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/testing
+  - .agents/skills/testing/README.md
+  - .agents/skills/testing/SKILL.md
+  - .agents/skills/testing/metadata.json
+  - .agents/skills/testing/rules/_sections.md
+  - .agents/skills/testing/rules/_template.md
+  - .agents/skills/testing/rules/fixture-conftest.md
+  - .agents/skills/testing/rules/fixture-factory.md
+  - .agents/skills/testing/rules/fixture-scope.md
+  - .agents/skills/testing/rules/mock-autospec.md
+  - .agents/skills/testing/rules/mock-boundaries.md
+  - .agents/skills/testing/rules/mock-monkeypatch.md
+  - .agents/skills/testing/rules/param-ids.md
+  - .agents/skills/testing/rules/param-parametrize.md
+  - .agents/skills/testing/rules/struct-aaa-pattern.md
+  - .agents/skills/testing/rules/struct-no-logic.md
+  - .agents/skills/testing/rules/struct-one-behavior.md
+  - .agents/skills/testing/rules/struct-test-naming.md
+  - .claude/skills/testing
+  - .claude/skills/testing/README.md
+  - .claude/skills/testing/SKILL.md
+  - .claude/skills/testing/metadata.json
+  - .claude/skills/testing/rules/_sections.md
+  - .claude/skills/testing/rules/_template.md
+  - .claude/skills/testing/rules/fixture-conftest.md
+  - .claude/skills/testing/rules/fixture-factory.md
+  - .claude/skills/testing/rules/fixture-scope.md
+  - .claude/skills/testing/rules/mock-autospec.md
+  - .claude/skills/testing/rules/mock-boundaries.md
+  - .claude/skills/testing/rules/mock-monkeypatch.md
+  - .claude/skills/testing/rules/param-ids.md
+  - .claude/skills/testing/rules/param-parametrize.md
+  - .claude/skills/testing/rules/struct-aaa-pattern.md
+  - .claude/skills/testing/rules/struct-no-logic.md
+  - .claude/skills/testing/rules/struct-one-behavior.md
+  - .claude/skills/testing/rules/struct-test-naming.md
+  deployed_file_hashes:
+    .agents/skills/testing/README.md: sha256:fa34cc0dffed8aa1a9e452f3bac207847ab011f6479f1eefed0ac03e10f9c597
+    .agents/skills/testing/SKILL.md: sha256:81c321afdaa2a3bf7075b1eae01d7854eba2043008be8235b92040055dfb3a7f
+    .agents/skills/testing/metadata.json: sha256:d853c9988348ec2cb1fd3d3bff5f2f429841ca60ecb0fb30b85fa27e3432fccb
+    .agents/skills/testing/rules/_sections.md: sha256:b5aada3f378a3c0de43639c2cdc5db52f7aed15dbe66bbe29de63f99eb6466ad
+    .agents/skills/testing/rules/_template.md: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+    .agents/skills/testing/rules/fixture-conftest.md: sha256:8c57a87a8a9d72b08c9f8ea654fd5deed8aafce65a9896dbb2d82a46f9173c5b
+    .agents/skills/testing/rules/fixture-factory.md: sha256:680d85733e21e401047b85243e038f49dcc819eead41e446c1b549fb479584b0
+    .agents/skills/testing/rules/fixture-scope.md: sha256:3170cb3778540f55e49d7c056f75c3c713cba3091a4b7ff60f74309205d31514
+    .agents/skills/testing/rules/mock-autospec.md: sha256:b40a1ec30ac5d7a1ba52ee78529bb977cd6fd37779d6bd51f03b300328a2cb54
+    .agents/skills/testing/rules/mock-boundaries.md: sha256:de85ceca531a9e1997207f1bf4cab54c41188815440bf47513135cf486243ef0
+    .agents/skills/testing/rules/mock-monkeypatch.md: sha256:d18a70fd65699cdb7a9fff3a4942d762a8820ca6eb8d921c1e56dc63d8a649a8
+    .agents/skills/testing/rules/param-ids.md: sha256:b912f1902a5a55f68e0ed435c90bc2b89ee5045ab59e99a07fbd42a19c43d50a
+    .agents/skills/testing/rules/param-parametrize.md: sha256:9e3029b98bc504fd942ee588cc8e88820b3f708e7b7e472b831202151a002d77
+    .agents/skills/testing/rules/struct-aaa-pattern.md: sha256:ba072ad7cb4cfee2373053a1a296b9ce7dc58e5e9e2b48c69cb08f5ff851b279
+    .agents/skills/testing/rules/struct-no-logic.md: sha256:b0f7d4a7cfb54acb41f0b6650f3cd82c30e7ee5d801944772a939aff6a850ee2
+    .agents/skills/testing/rules/struct-one-behavior.md: sha256:562f44f63682c654841d2983a16dbdfc38b39b04555cb0481dc7462785aa71af
+    .agents/skills/testing/rules/struct-test-naming.md: sha256:f1dbdc44abd00e2a131fab98d760f91a0376a4cb20e70bb6d312f1c23e7db3f4
+    .claude/skills/testing/README.md: sha256:fa34cc0dffed8aa1a9e452f3bac207847ab011f6479f1eefed0ac03e10f9c597
+    .claude/skills/testing/SKILL.md: sha256:81c321afdaa2a3bf7075b1eae01d7854eba2043008be8235b92040055dfb3a7f
+    .claude/skills/testing/metadata.json: sha256:d853c9988348ec2cb1fd3d3bff5f2f429841ca60ecb0fb30b85fa27e3432fccb
+    .claude/skills/testing/rules/_sections.md: sha256:b5aada3f378a3c0de43639c2cdc5db52f7aed15dbe66bbe29de63f99eb6466ad
+    .claude/skills/testing/rules/_template.md: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+    .claude/skills/testing/rules/fixture-conftest.md: sha256:8c57a87a8a9d72b08c9f8ea654fd5deed8aafce65a9896dbb2d82a46f9173c5b
+    .claude/skills/testing/rules/fixture-factory.md: sha256:680d85733e21e401047b85243e038f49dcc819eead41e446c1b549fb479584b0
+    .claude/skills/testing/rules/fixture-scope.md: sha256:3170cb3778540f55e49d7c056f75c3c713cba3091a4b7ff60f74309205d31514
+    .claude/skills/testing/rules/mock-autospec.md: sha256:b40a1ec30ac5d7a1ba52ee78529bb977cd6fd37779d6bd51f03b300328a2cb54
+    .claude/skills/testing/rules/mock-boundaries.md: sha256:de85ceca531a9e1997207f1bf4cab54c41188815440bf47513135cf486243ef0
+    .claude/skills/testing/rules/mock-monkeypatch.md: sha256:d18a70fd65699cdb7a9fff3a4942d762a8820ca6eb8d921c1e56dc63d8a649a8
+    .claude/skills/testing/rules/param-ids.md: sha256:b912f1902a5a55f68e0ed435c90bc2b89ee5045ab59e99a07fbd42a19c43d50a
+    .claude/skills/testing/rules/param-parametrize.md: sha256:9e3029b98bc504fd942ee588cc8e88820b3f708e7b7e472b831202151a002d77
+    .claude/skills/testing/rules/struct-aaa-pattern.md: sha256:ba072ad7cb4cfee2373053a1a296b9ce7dc58e5e9e2b48c69cb08f5ff851b279
+    .claude/skills/testing/rules/struct-no-logic.md: sha256:b0f7d4a7cfb54acb41f0b6650f3cd82c30e7ee5d801944772a939aff6a850ee2
+    .claude/skills/testing/rules/struct-one-behavior.md: sha256:562f44f63682c654841d2983a16dbdfc38b39b04555cb0481dc7462785aa71af
+    .claude/skills/testing/rules/struct-test-naming.md: sha256:f1dbdc44abd00e2a131fab98d760f91a0376a4cb20e70bb6d312f1c23e7db3f4
+  content_hash: sha256:739afecd8e609942fee5016996351083a683800e9a494ae2106d760ee9929330
+- repo_url: ludo-technologies/python-best-practices
+  name: tooling
+  host: github.com
+  resolved_commit: 5202c854f211dff8f5255fa78691c193c8b26a4b
+  resolved_ref: main
+  version: unknown
+  virtual_path: skills/tooling
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/tooling
+  - .agents/skills/tooling/README.md
+  - .agents/skills/tooling/SKILL.md
+  - .agents/skills/tooling/metadata.json
+  - .agents/skills/tooling/rules/_sections.md
+  - .agents/skills/tooling/rules/_template.md
+  - .agents/skills/tooling/rules/analysis-pyscn.md
+  - .agents/skills/tooling/rules/fmt-ruff.md
+  - .agents/skills/tooling/rules/lint-ruff.md
+  - .agents/skills/tooling/rules/pkg-pyproject.md
+  - .agents/skills/tooling/rules/pkg-uv.md
+  - .agents/skills/tooling/rules/test-pytest.md
+  - .agents/skills/tooling/rules/type-mypy.md
+  - .claude/skills/tooling
+  - .claude/skills/tooling/README.md
+  - .claude/skills/tooling/SKILL.md
+  - .claude/skills/tooling/metadata.json
+  - .claude/skills/tooling/rules/_sections.md
+  - .claude/skills/tooling/rules/_template.md
+  - .claude/skills/tooling/rules/analysis-pyscn.md
+  - .claude/skills/tooling/rules/fmt-ruff.md
+  - .claude/skills/tooling/rules/lint-ruff.md
+  - .claude/skills/tooling/rules/pkg-pyproject.md
+  - .claude/skills/tooling/rules/pkg-uv.md
+  - .claude/skills/tooling/rules/test-pytest.md
+  - .claude/skills/tooling/rules/type-mypy.md
+  deployed_file_hashes:
+    .agents/skills/tooling/README.md: sha256:98cb5147267f656128dd42423035497d847bf621cc4f8286bf9fcfee1085a8f1
+    .agents/skills/tooling/SKILL.md: sha256:f753bddb077625f558999aaf9d325b2359d8e985cfad313992f88299351e1b3a
+    .agents/skills/tooling/metadata.json: sha256:819c93bab471a9244eec59cadc3917dfcd4faefad367b745f7555fb47305eeca
+    .agents/skills/tooling/rules/_sections.md: sha256:2543435f1f1693426e32cb1d9d7ac82c69f7e9790f85a9e7b5095ff4109d01bc
+    .agents/skills/tooling/rules/_template.md: sha256:e550fbe1143f6eeb8104cff841b67b1ff8e183366848dfdfc365b2e593e37cab
+    .agents/skills/tooling/rules/analysis-pyscn.md: sha256:11ab2e5070fedcd174ab24363610842e8dd63e78a4ec89b251e55c29f9e69402
+    .agents/skills/tooling/rules/fmt-ruff.md: sha256:16b40ba9907978e6dffe5b71c264634bf8208ad4f0c05a0fa4df49c3bd7f4924
+    .agents/skills/tooling/rules/lint-ruff.md: sha256:6a2842f96b93952bd2bf797d4c7c72911564fa6dd908b92dccb65f3f2d06c12d
+    .agents/skills/tooling/rules/pkg-pyproject.md: sha256:11bd6ac114f1259550c6dd433355e8c64de3d04db1fecc86d1e938556cb28e19
+    .agents/skills/tooling/rules/pkg-uv.md: sha256:5be2a18b0d256138d2bb927c0b646a82c064476e045bc8b16020a7a1fd879b1a
+    .agents/skills/tooling/rules/test-pytest.md: sha256:50c0461902bb1cf72a88e8f0be483d7cf307405d8e94774ccb9d9934cc12feac
+    .agents/skills/tooling/rules/type-mypy.md: sha256:ee93313bed51bda07c02fe33b8796d0b0e4e79eea43444426bd9a1b28490e7a4
+    .claude/skills/tooling/README.md: sha256:98cb5147267f656128dd42423035497d847bf621cc4f8286bf9fcfee1085a8f1
+    .claude/skills/tooling/SKILL.md: sha256:f753bddb077625f558999aaf9d325b2359d8e985cfad313992f88299351e1b3a
+    .claude/skills/tooling/metadata.json: sha256:819c93bab471a9244eec59cadc3917dfcd4faefad367b745f7555fb47305eeca
+    .claude/skills/tooling/rules/_sections.md: sha256:2543435f1f1693426e32cb1d9d7ac82c69f7e9790f85a9e7b5095ff4109d01bc
+    .claude/skills/tooling/rules/_template.md: sha256:e550fbe1143f6eeb8104cff841b67b1ff8e183366848dfdfc365b2e593e37cab
+    .claude/skills/tooling/rules/analysis-pyscn.md: sha256:11ab2e5070fedcd174ab24363610842e8dd63e78a4ec89b251e55c29f9e69402
+    .claude/skills/tooling/rules/fmt-ruff.md: sha256:16b40ba9907978e6dffe5b71c264634bf8208ad4f0c05a0fa4df49c3bd7f4924
+    .claude/skills/tooling/rules/lint-ruff.md: sha256:6a2842f96b93952bd2bf797d4c7c72911564fa6dd908b92dccb65f3f2d06c12d
+    .claude/skills/tooling/rules/pkg-pyproject.md: sha256:11bd6ac114f1259550c6dd433355e8c64de3d04db1fecc86d1e938556cb28e19
+    .claude/skills/tooling/rules/pkg-uv.md: sha256:5be2a18b0d256138d2bb927c0b646a82c064476e045bc8b16020a7a1fd879b1a
+    .claude/skills/tooling/rules/test-pytest.md: sha256:50c0461902bb1cf72a88e8f0be483d7cf307405d8e94774ccb9d9934cc12feac
+    .claude/skills/tooling/rules/type-mypy.md: sha256:ee93313bed51bda07c02fe33b8796d0b0e4e79eea43444426bd9a1b28490e7a4
+  content_hash: sha256:60533bce3d4cb49cce937270c061fb74c8c883a9b9845cb09e6925421e0ec6ed
+- repo_url: tttpob/bioinfo-skills
+  name: pixi
+  host: github.com
+  resolved_commit: 2c97996a50a9c47d851bec31c005913f1454d9ab
+  resolved_ref: main
+  version: unknown
+  virtual_path: pixi
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .agents/skills/pixi
+  - .agents/skills/pixi/SKILL.md
+  - .agents/skills/pixi/assets/pixi.toml.template
+  - .agents/skills/pixi/references/cli-reference.md
+  - .agents/skills/pixi/references/examples.md
+  - .agents/skills/pixi/references/features-guide.md
+  - .agents/skills/pixi/scripts/check_pixi.sh
+  - .agents/skills/pixi/scripts/pixi_info.py
+  - .claude/skills/pixi
+  - .claude/skills/pixi/SKILL.md
+  - .claude/skills/pixi/assets/pixi.toml.template
+  - .claude/skills/pixi/references/cli-reference.md
+  - .claude/skills/pixi/references/examples.md
+  - .claude/skills/pixi/references/features-guide.md
+  - .claude/skills/pixi/scripts/check_pixi.sh
+  - .claude/skills/pixi/scripts/pixi_info.py
+  deployed_file_hashes:
+    .agents/skills/pixi/SKILL.md: sha256:13bbb4b8f6b01e2b68e3ce8270e5f3a52f88b19c4d84316b1f169ceacc2b4859
+    .agents/skills/pixi/assets/pixi.toml.template: sha256:5a7a2adba5df29870b3ab4c9db198c619b9e912e68b959d635865ba12551c315
+    .agents/skills/pixi/references/cli-reference.md: sha256:4f2adb6a08cd25059e5ac18c2fb98456233cea29afb6882e40c5befbcdb2f111
+    .agents/skills/pixi/references/examples.md: sha256:7e19bdd0904386d21adf87e9c8e8bc21b0dd62502ab83f4894e7594e5724a98a
+    .agents/skills/pixi/references/features-guide.md: sha256:26a442ef3becc9ccda9428a73b1a0018d5390b0994439b695599c40088e00f2c
+    .agents/skills/pixi/scripts/check_pixi.sh: sha256:cd068c19fd61572d5494df4ab6094529fdc123ed5afcb4a3ec016280b68fc822
+    .agents/skills/pixi/scripts/pixi_info.py: sha256:3d4f88051ba968acb754fea8f3aaad213e9bb617e3643ef2eefc91688cdea504
+    .claude/skills/pixi/SKILL.md: sha256:13bbb4b8f6b01e2b68e3ce8270e5f3a52f88b19c4d84316b1f169ceacc2b4859
+    .claude/skills/pixi/assets/pixi.toml.template: sha256:5a7a2adba5df29870b3ab4c9db198c619b9e912e68b959d635865ba12551c315
+    .claude/skills/pixi/references/cli-reference.md: sha256:4f2adb6a08cd25059e5ac18c2fb98456233cea29afb6882e40c5befbcdb2f111
+    .claude/skills/pixi/references/examples.md: sha256:7e19bdd0904386d21adf87e9c8e8bc21b0dd62502ab83f4894e7594e5724a98a
+    .claude/skills/pixi/references/features-guide.md: sha256:26a442ef3becc9ccda9428a73b1a0018d5390b0994439b695599c40088e00f2c
+    .claude/skills/pixi/scripts/check_pixi.sh: sha256:cd068c19fd61572d5494df4ab6094529fdc123ed5afcb4a3ec016280b68fc822
+    .claude/skills/pixi/scripts/pixi_info.py: sha256:3d4f88051ba968acb754fea8f3aaad213e9bb617e3643ef2eefc91688cdea504
+  content_hash: sha256:53ab4c5f4a36016831865b3844d844728671463476e66ad03c0c3652d23dc0f0
+deployments:
+- kind: project-relative
+  target: agents
+  value: .agents/skills/adr
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/adr/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:06ec72317c3ef7085b3c76d608a08bdb69af3ea9a6cfcc51a0fa71ff8fb53868
+- kind: project-relative
+  target: agents
+  value: .agents/skills/adr/references/adr-template-minimal.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:fdacd20ca99df002451fa8724e7b0b204c252604b586fafbfb60bbbf28a47a9f
+- kind: project-relative
+  target: agents
+  value: .agents/skills/adr/references/adr-template.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:1dd2cbf38d24ceb5f7248b2e91358c8186ea6c318f036aa29b7e039c09f0cafb
+- kind: project-relative
+  target: agents
+  value: .agents/skills/apm
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/apm/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:2a467a2b87a4cc4d44859790f77f824165e77b61077017d25f9db95d124130c1
+- kind: project-relative
+  target: agents
+  value: .agents/skills/cocogitto
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/cocogitto/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
+- kind: project-relative
+  target: agents
+  value: .agents/skills/cocogitto/references/changelog-templates.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
+- kind: project-relative
+  target: agents
+  value: .agents/skills/cocogitto/references/config-reference.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
+- kind: project-relative
+  target: agents
+  value: .agents/skills/lefthook
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/lefthook/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
+- kind: project-relative
+  target: agents
+  value: .agents/skills/task
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/task/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+- kind: project-relative
+  target: claude
+  value: .claude/rules/workspace.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:8af45fe4591f6eabbdd2ab1ff9265e589c4da16d194e32bfff29d34e32cd3557
+- kind: project-relative
+  target: claude
+  value: .claude/skills/adr
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/adr/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:06ec72317c3ef7085b3c76d608a08bdb69af3ea9a6cfcc51a0fa71ff8fb53868
+- kind: project-relative
+  target: claude
+  value: .claude/skills/adr/references/adr-template-minimal.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:fdacd20ca99df002451fa8724e7b0b204c252604b586fafbfb60bbbf28a47a9f
+- kind: project-relative
+  target: claude
+  value: .claude/skills/adr/references/adr-template.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:1dd2cbf38d24ceb5f7248b2e91358c8186ea6c318f036aa29b7e039c09f0cafb
+- kind: project-relative
+  target: claude
+  value: .claude/skills/apm
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/apm/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:2a467a2b87a4cc4d44859790f77f824165e77b61077017d25f9db95d124130c1
+- kind: project-relative
+  target: claude
+  value: .claude/skills/cocogitto
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/cocogitto/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
+- kind: project-relative
+  target: claude
+  value: .claude/skills/cocogitto/references/changelog-templates.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
+- kind: project-relative
+  target: claude
+  value: .claude/skills/cocogitto/references/config-reference.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/README.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:b1beca6daf42671c2c9b51140e16144277d49a6ac81c9e557b3307cfa88e2422
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:03020b77bd47cf15fa39482ec94afbd03c296d26b8f31744ddf248a935bb500e
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/metadata.json
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:bd60f5006359042fc5afd734aa79e589b1dd4cea57a0410a968fbe2413b91ec9
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/_sections.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:cf878def0493a794850a8f0a9da5633f30046fd962a75fe7e50210a7ff8e250a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/_template.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/async-context-manager.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:c0cf8c8d09c4414849c23908b6c2f42d78419b253e4176c7570306284eec8ef2
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/async-create-task.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:1bec0e6f6f7c5b9c6b0298afc9143f10981034ef7288f666b906b075b92d52d9
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/async-gather.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:dd3e7d967b1d12ccea4544cb776589e1681ac9b3386b7f8c98dd6839e9d0f6b1
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/async-semaphore.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:ec5337a0fc99350854d76909d11135d821b48d7d79648891746518e309f2f4cf
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/design-dependency-injection.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:44ccaa14795bce2f2e9ae65290bba0cd3f05dcc402ec4115348f2a90b20c4c10
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/design-early-return.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:34f9866ce558e8edfffb77ea68b9c14535b1e2572387d174ae52264f24aee16b
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/design-no-global-singleton.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:697101c9844ef6aea4e887e8a50f6d194496cc4abb550d4dd239ac4950972577
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/design-philosophy.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:d1baf7095dd1593c62b251be5192ee086fe73e0dba3630a1fddf8bb45ca8592c
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/design-pure-functions.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:581abb03edca17c4752f9ff4858e312258a86b63348a44b79da9d907ad3296e9
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/design-single-responsibility.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:f0852cfa8ad507b6834ee56df81a4eebd74a6ec3884c7d07c9ee164eb7e88e75
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/doc-docstring.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:8102883b5c74bbf8981dd7396569b4e41bc13a1e17b510d27695f49e14e6b6e9
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/doc-type-hints.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:f67b02cbd17926caaed9469fca661fe0f59e7edc7bb5e99092d69b0eda62bebe
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/error-no-silent-exceptions.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:c493e39890fc5260ef7532092faa33ad938a92a0a675c8e50af0038d00434501
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/oop-composition-over-inheritance.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:70d8b47ee0ad72a0a13ed91357de85e8ea21e8a3569ddd94b0d3ada6a632646d
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/oop-dataclass.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:05e7c3bcdca9edaf9aa014576e046daad01dbd4cb242823001ac3858bf0d92cb
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/oop-property.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:ed7d1c78178f806626215b76a5e71f4f5c3bf1b1cf2b0dee695fb261ff130af0
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/oop-protocol.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:14d4d0a1c28507fbb78ca81d2be538a6bb5d68ad161e517e6984449edb540f88
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/perf-dict-get.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:0d29ca7b027c26207591ff18c109463c7078ce73b665d78d8ca4083d8c5a5648
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/perf-generator-expression.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:5efc2175828222333fe778fdd47e043b1a713659175749fdce9f0b7c9de2a218
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/perf-list-comprehension.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:5a39ea140f38c89c34c2d6fc0d1c116804053e3622a2f9c070a0be647006b4ea
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/perf-set-lookup.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:eb9ae51feb7f414d9cf32e0391902e4e94d8a0448c05b371af4d7018d9e38daf
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/perf-str-join.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:7c1b8a9ce365054b7b4361713a2386366878090dfb7533eb24c10adc3c5c61ba
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/solid-isp.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:da179a6f3405c6fb74606618b5d5042d9d4bb6fe2ad35d67ab6a64e38a05626b
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/solid-lsp.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:92fcd175669e44bdf9cc461585f41fa4dfd188cf78e3a0d937a008e18b9f997c
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/solid-ocp.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:babd2bcf202ef41d4ea001892a4b05ba399b4667b0f29ea6e24b42976a44722c
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/rules/validation-pydantic.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:7e0a2551504efe60a04b51672c0fcdd58da493e4e94224089caef9d2c4d511e2
+- kind: project-relative
+  target: claude
+  value: .claude/skills/coding-standards/tooling.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:22f1a8af5c57a43cad032382217492162c039e8c7f99c71d84f5950af430a634
+- kind: project-relative
+  target: claude
+  value: .claude/skills/deno
+  runtime: null
+  scope: project
+  owners:
+  - denoland/skills/skills/deno
+  active_owner: denoland/skills/skills/deno
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/deno/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - denoland/skills/skills/deno
+  active_owner: denoland/skills/skills/deno
+  content_hash: sha256:96bcaefb9ec0b388fcf0fbffbc7aa5d566860076f706ab3972f7f5fc59494527
+- kind: project-relative
+  target: claude
+  value: .claude/skills/deno/references/CLI.md
+  runtime: null
+  scope: project
+  owners:
+  - denoland/skills/skills/deno
+  active_owner: denoland/skills/skills/deno
+  content_hash: sha256:d95e2b119f2de24c9962092a38abdb1565b93c0a2d78e42d883d097cec62b276
+- kind: project-relative
+  target: claude
+  value: .claude/skills/git-commit
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/git-commit/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+- kind: project-relative
+  target: claude
+  value: .claude/skills/lefthook
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/lefthook/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:13bbb4b8f6b01e2b68e3ce8270e5f3a52f88b19c4d84316b1f169ceacc2b4859
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/assets/pixi.toml.template
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:5a7a2adba5df29870b3ab4c9db198c619b9e912e68b959d635865ba12551c315
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/references/cli-reference.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:4f2adb6a08cd25059e5ac18c2fb98456233cea29afb6882e40c5befbcdb2f111
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/references/examples.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:7e19bdd0904386d21adf87e9c8e8bc21b0dd62502ab83f4894e7594e5724a98a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/references/features-guide.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:26a442ef3becc9ccda9428a73b1a0018d5390b0994439b695599c40088e00f2c
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/scripts/check_pixi.sh
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:cd068c19fd61572d5494df4ab6094529fdc123ed5afcb4a3ec016280b68fc822
+- kind: project-relative
+  target: claude
+  value: .claude/skills/pixi/scripts/pixi_info.py
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:3d4f88051ba968acb754fea8f3aaad213e9bb617e3643ef2eefc91688cdea504
+- kind: project-relative
+  target: claude
+  value: .claude/skills/task
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/task/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/README.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:fa34cc0dffed8aa1a9e452f3bac207847ab011f6479f1eefed0ac03e10f9c597
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:81c321afdaa2a3bf7075b1eae01d7854eba2043008be8235b92040055dfb3a7f
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/metadata.json
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:d853c9988348ec2cb1fd3d3bff5f2f429841ca60ecb0fb30b85fa27e3432fccb
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/_sections.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b5aada3f378a3c0de43639c2cdc5db52f7aed15dbe66bbe29de63f99eb6466ad
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/_template.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/fixture-conftest.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:8c57a87a8a9d72b08c9f8ea654fd5deed8aafce65a9896dbb2d82a46f9173c5b
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/fixture-factory.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:680d85733e21e401047b85243e038f49dcc819eead41e446c1b549fb479584b0
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/fixture-scope.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:3170cb3778540f55e49d7c056f75c3c713cba3091a4b7ff60f74309205d31514
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/mock-autospec.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b40a1ec30ac5d7a1ba52ee78529bb977cd6fd37779d6bd51f03b300328a2cb54
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/mock-boundaries.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:de85ceca531a9e1997207f1bf4cab54c41188815440bf47513135cf486243ef0
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/mock-monkeypatch.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:d18a70fd65699cdb7a9fff3a4942d762a8820ca6eb8d921c1e56dc63d8a649a8
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/param-ids.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b912f1902a5a55f68e0ed435c90bc2b89ee5045ab59e99a07fbd42a19c43d50a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/param-parametrize.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:9e3029b98bc504fd942ee588cc8e88820b3f708e7b7e472b831202151a002d77
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/struct-aaa-pattern.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:ba072ad7cb4cfee2373053a1a296b9ce7dc58e5e9e2b48c69cb08f5ff851b279
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/struct-no-logic.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b0f7d4a7cfb54acb41f0b6650f3cd82c30e7ee5d801944772a939aff6a850ee2
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/struct-one-behavior.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:562f44f63682c654841d2983a16dbdfc38b39b04555cb0481dc7462785aa71af
+- kind: project-relative
+  target: claude
+  value: .claude/skills/testing/rules/struct-test-naming.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:f1dbdc44abd00e2a131fab98d760f91a0376a4cb20e70bb6d312f1c23e7db3f4
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/README.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:98cb5147267f656128dd42423035497d847bf621cc4f8286bf9fcfee1085a8f1
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:f753bddb077625f558999aaf9d325b2359d8e985cfad313992f88299351e1b3a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/metadata.json
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:819c93bab471a9244eec59cadc3917dfcd4faefad367b745f7555fb47305eeca
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/_sections.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:2543435f1f1693426e32cb1d9d7ac82c69f7e9790f85a9e7b5095ff4109d01bc
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/_template.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:e550fbe1143f6eeb8104cff841b67b1ff8e183366848dfdfc365b2e593e37cab
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/analysis-pyscn.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:11ab2e5070fedcd174ab24363610842e8dd63e78a4ec89b251e55c29f9e69402
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/fmt-ruff.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:16b40ba9907978e6dffe5b71c264634bf8208ad4f0c05a0fa4df49c3bd7f4924
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/lint-ruff.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:6a2842f96b93952bd2bf797d4c7c72911564fa6dd908b92dccb65f3f2d06c12d
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/pkg-pyproject.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:11bd6ac114f1259550c6dd433355e8c64de3d04db1fecc86d1e938556cb28e19
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/pkg-uv.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:5be2a18b0d256138d2bb927c0b646a82c064476e045bc8b16020a7a1fd879b1a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/test-pytest.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:50c0461902bb1cf72a88e8f0be483d7cf307405d8e94774ccb9d9934cc12feac
+- kind: project-relative
+  target: claude
+  value: .claude/skills/tooling/rules/type-mypy.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:ee93313bed51bda07c02fe33b8796d0b0e4e79eea43444426bd9a1b28490e7a4
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/README.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:b1beca6daf42671c2c9b51140e16144277d49a6ac81c9e557b3307cfa88e2422
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:03020b77bd47cf15fa39482ec94afbd03c296d26b8f31744ddf248a935bb500e
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/metadata.json
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:bd60f5006359042fc5afd734aa79e589b1dd4cea57a0410a968fbe2413b91ec9
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/_sections.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:cf878def0493a794850a8f0a9da5633f30046fd962a75fe7e50210a7ff8e250a
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/_template.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/async-context-manager.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:c0cf8c8d09c4414849c23908b6c2f42d78419b253e4176c7570306284eec8ef2
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/async-create-task.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:1bec0e6f6f7c5b9c6b0298afc9143f10981034ef7288f666b906b075b92d52d9
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/async-gather.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:dd3e7d967b1d12ccea4544cb776589e1681ac9b3386b7f8c98dd6839e9d0f6b1
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/async-semaphore.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:ec5337a0fc99350854d76909d11135d821b48d7d79648891746518e309f2f4cf
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/design-dependency-injection.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:44ccaa14795bce2f2e9ae65290bba0cd3f05dcc402ec4115348f2a90b20c4c10
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/design-early-return.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:34f9866ce558e8edfffb77ea68b9c14535b1e2572387d174ae52264f24aee16b
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/design-no-global-singleton.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:697101c9844ef6aea4e887e8a50f6d194496cc4abb550d4dd239ac4950972577
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/design-philosophy.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:d1baf7095dd1593c62b251be5192ee086fe73e0dba3630a1fddf8bb45ca8592c
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/design-pure-functions.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:581abb03edca17c4752f9ff4858e312258a86b63348a44b79da9d907ad3296e9
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/design-single-responsibility.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:f0852cfa8ad507b6834ee56df81a4eebd74a6ec3884c7d07c9ee164eb7e88e75
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/doc-docstring.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:8102883b5c74bbf8981dd7396569b4e41bc13a1e17b510d27695f49e14e6b6e9
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/doc-type-hints.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:f67b02cbd17926caaed9469fca661fe0f59e7edc7bb5e99092d69b0eda62bebe
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/error-no-silent-exceptions.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:c493e39890fc5260ef7532092faa33ad938a92a0a675c8e50af0038d00434501
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/oop-composition-over-inheritance.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:70d8b47ee0ad72a0a13ed91357de85e8ea21e8a3569ddd94b0d3ada6a632646d
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/oop-dataclass.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:05e7c3bcdca9edaf9aa014576e046daad01dbd4cb242823001ac3858bf0d92cb
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/oop-property.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:ed7d1c78178f806626215b76a5e71f4f5c3bf1b1cf2b0dee695fb261ff130af0
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/oop-protocol.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:14d4d0a1c28507fbb78ca81d2be538a6bb5d68ad161e517e6984449edb540f88
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/perf-dict-get.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:0d29ca7b027c26207591ff18c109463c7078ce73b665d78d8ca4083d8c5a5648
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/perf-generator-expression.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:5efc2175828222333fe778fdd47e043b1a713659175749fdce9f0b7c9de2a218
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/perf-list-comprehension.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:5a39ea140f38c89c34c2d6fc0d1c116804053e3622a2f9c070a0be647006b4ea
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/perf-set-lookup.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:eb9ae51feb7f414d9cf32e0391902e4e94d8a0448c05b371af4d7018d9e38daf
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/perf-str-join.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:7c1b8a9ce365054b7b4361713a2386366878090dfb7533eb24c10adc3c5c61ba
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/solid-isp.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:da179a6f3405c6fb74606618b5d5042d9d4bb6fe2ad35d67ab6a64e38a05626b
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/solid-lsp.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:92fcd175669e44bdf9cc461585f41fa4dfd188cf78e3a0d937a008e18b9f997c
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/solid-ocp.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:babd2bcf202ef41d4ea001892a4b05ba399b4667b0f29ea6e24b42976a44722c
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/rules/validation-pydantic.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:7e0a2551504efe60a04b51672c0fcdd58da493e4e94224089caef9d2c4d511e2
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/coding-standards/tooling.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/coding-standards
+  active_owner: ludo-technologies/python-best-practices/skills/coding-standards
+  content_hash: sha256:22f1a8af5c57a43cad032382217492162c039e8c7f99c71d84f5950af430a634
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/deno
+  runtime: null
+  scope: project
+  owners:
+  - denoland/skills/skills/deno
+  active_owner: denoland/skills/skills/deno
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/deno/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - denoland/skills/skills/deno
+  active_owner: denoland/skills/skills/deno
+  content_hash: sha256:96bcaefb9ec0b388fcf0fbffbc7aa5d566860076f706ab3972f7f5fc59494527
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/deno/references/CLI.md
+  runtime: null
+  scope: project
+  owners:
+  - denoland/skills/skills/deno
+  active_owner: denoland/skills/skills/deno
+  content_hash: sha256:d95e2b119f2de24c9962092a38abdb1565b93c0a2d78e42d883d097cec62b276
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/git-commit
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/git-commit/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - github/awesome-copilot/skills/git-commit
+  active_owner: github/awesome-copilot/skills/git-commit
+  content_hash: sha256:554d1a3c6d95f15bc1170160659ecdc9a9958b64f377f3988941b672c249b13f
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:13bbb4b8f6b01e2b68e3ce8270e5f3a52f88b19c4d84316b1f169ceacc2b4859
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/assets/pixi.toml.template
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:5a7a2adba5df29870b3ab4c9db198c619b9e912e68b959d635865ba12551c315
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/references/cli-reference.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:4f2adb6a08cd25059e5ac18c2fb98456233cea29afb6882e40c5befbcdb2f111
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/references/examples.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:7e19bdd0904386d21adf87e9c8e8bc21b0dd62502ab83f4894e7594e5724a98a
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/references/features-guide.md
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:26a442ef3becc9ccda9428a73b1a0018d5390b0994439b695599c40088e00f2c
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/scripts/check_pixi.sh
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:cd068c19fd61572d5494df4ab6094529fdc123ed5afcb4a3ec016280b68fc822
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/pixi/scripts/pixi_info.py
+  runtime: null
+  scope: project
+  owners:
+  - tttpob/bioinfo-skills/pixi
+  active_owner: tttpob/bioinfo-skills/pixi
+  content_hash: sha256:3d4f88051ba968acb754fea8f3aaad213e9bb617e3643ef2eefc91688cdea504
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/README.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:fa34cc0dffed8aa1a9e452f3bac207847ab011f6479f1eefed0ac03e10f9c597
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:81c321afdaa2a3bf7075b1eae01d7854eba2043008be8235b92040055dfb3a7f
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/metadata.json
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:d853c9988348ec2cb1fd3d3bff5f2f429841ca60ecb0fb30b85fa27e3432fccb
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/_sections.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b5aada3f378a3c0de43639c2cdc5db52f7aed15dbe66bbe29de63f99eb6466ad
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/_template.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:a188fef8460aa6b53185cfee5977511b893922a21443132b46db56bea890625d
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/fixture-conftest.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:8c57a87a8a9d72b08c9f8ea654fd5deed8aafce65a9896dbb2d82a46f9173c5b
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/fixture-factory.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:680d85733e21e401047b85243e038f49dcc819eead41e446c1b549fb479584b0
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/fixture-scope.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:3170cb3778540f55e49d7c056f75c3c713cba3091a4b7ff60f74309205d31514
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/mock-autospec.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b40a1ec30ac5d7a1ba52ee78529bb977cd6fd37779d6bd51f03b300328a2cb54
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/mock-boundaries.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:de85ceca531a9e1997207f1bf4cab54c41188815440bf47513135cf486243ef0
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/mock-monkeypatch.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:d18a70fd65699cdb7a9fff3a4942d762a8820ca6eb8d921c1e56dc63d8a649a8
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/param-ids.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b912f1902a5a55f68e0ed435c90bc2b89ee5045ab59e99a07fbd42a19c43d50a
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/param-parametrize.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:9e3029b98bc504fd942ee588cc8e88820b3f708e7b7e472b831202151a002d77
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/struct-aaa-pattern.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:ba072ad7cb4cfee2373053a1a296b9ce7dc58e5e9e2b48c69cb08f5ff851b279
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/struct-no-logic.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:b0f7d4a7cfb54acb41f0b6650f3cd82c30e7ee5d801944772a939aff6a850ee2
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/struct-one-behavior.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:562f44f63682c654841d2983a16dbdfc38b39b04555cb0481dc7462785aa71af
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/testing/rules/struct-test-naming.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/testing
+  active_owner: ludo-technologies/python-best-practices/skills/testing
+  content_hash: sha256:f1dbdc44abd00e2a131fab98d760f91a0376a4cb20e70bb6d312f1c23e7db3f4
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: null
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/README.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:98cb5147267f656128dd42423035497d847bf621cc4f8286bf9fcfee1085a8f1
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:f753bddb077625f558999aaf9d325b2359d8e985cfad313992f88299351e1b3a
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/metadata.json
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:819c93bab471a9244eec59cadc3917dfcd4faefad367b745f7555fb47305eeca
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/_sections.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:2543435f1f1693426e32cb1d9d7ac82c69f7e9790f85a9e7b5095ff4109d01bc
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/_template.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:e550fbe1143f6eeb8104cff841b67b1ff8e183366848dfdfc365b2e593e37cab
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/analysis-pyscn.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:11ab2e5070fedcd174ab24363610842e8dd63e78a4ec89b251e55c29f9e69402
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/fmt-ruff.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:16b40ba9907978e6dffe5b71c264634bf8208ad4f0c05a0fa4df49c3bd7f4924
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/lint-ruff.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:6a2842f96b93952bd2bf797d4c7c72911564fa6dd908b92dccb65f3f2d06c12d
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/pkg-pyproject.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:11bd6ac114f1259550c6dd433355e8c64de3d04db1fecc86d1e938556cb28e19
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/pkg-uv.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:5be2a18b0d256138d2bb927c0b646a82c064476e045bc8b16020a7a1fd879b1a
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/test-pytest.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:50c0461902bb1cf72a88e8f0be483d7cf307405d8e94774ccb9d9934cc12feac
+- kind: project-relative
+  target: copilot
+  value: .agents/skills/tooling/rules/type-mypy.md
+  runtime: null
+  scope: project
+  owners:
+  - ludo-technologies/python-best-practices/skills/tooling
+  active_owner: ludo-technologies/python-best-practices/skills/tooling
+  content_hash: sha256:ee93313bed51bda07c02fe33b8796d0b0e4e79eea43444426bd9a1b28490e7a4
+- kind: project-relative
+  target: copilot
+  value: .github/instructions/workspace.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:703986bbcea17220d52fcc6ef6b20b497e0341a26912d437b914bb956c9f1b81
+local_deployed_files:
+- .agents/skills/adr
+- .agents/skills/adr/SKILL.md
+- .agents/skills/adr/references/adr-template-minimal.md
+- .agents/skills/adr/references/adr-template.md
+- .agents/skills/apm
+- .agents/skills/apm/SKILL.md
+- .agents/skills/cocogitto
+- .agents/skills/cocogitto/SKILL.md
+- .agents/skills/cocogitto/references/changelog-templates.md
+- .agents/skills/cocogitto/references/config-reference.md
+- .agents/skills/lefthook
+- .agents/skills/lefthook/SKILL.md
+- .agents/skills/task
+- .agents/skills/task/SKILL.md
+- .claude/rules/workspace.md
+- .claude/skills/adr
+- .claude/skills/adr/SKILL.md
+- .claude/skills/adr/references/adr-template-minimal.md
+- .claude/skills/adr/references/adr-template.md
+- .claude/skills/apm
+- .claude/skills/apm/SKILL.md
+- .claude/skills/cocogitto
+- .claude/skills/cocogitto/SKILL.md
+- .claude/skills/cocogitto/references/changelog-templates.md
+- .claude/skills/cocogitto/references/config-reference.md
+- .claude/skills/lefthook
+- .claude/skills/lefthook/SKILL.md
+- .claude/skills/task
+- .claude/skills/task/SKILL.md
+- .github/instructions/workspace.instructions.md
+local_deployed_file_hashes:
+  .agents/skills/adr/SKILL.md: sha256:06ec72317c3ef7085b3c76d608a08bdb69af3ea9a6cfcc51a0fa71ff8fb53868
+  .agents/skills/adr/references/adr-template-minimal.md: sha256:fdacd20ca99df002451fa8724e7b0b204c252604b586fafbfb60bbbf28a47a9f
+  .agents/skills/adr/references/adr-template.md: sha256:1dd2cbf38d24ceb5f7248b2e91358c8186ea6c318f036aa29b7e039c09f0cafb
+  .agents/skills/apm/SKILL.md: sha256:2a467a2b87a4cc4d44859790f77f824165e77b61077017d25f9db95d124130c1
+  .agents/skills/cocogitto/SKILL.md: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
+  .agents/skills/cocogitto/references/changelog-templates.md: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
+  .agents/skills/cocogitto/references/config-reference.md: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
+  .agents/skills/lefthook/SKILL.md: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
+  .agents/skills/task/SKILL.md: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+  .claude/rules/workspace.md: sha256:8af45fe4591f6eabbdd2ab1ff9265e589c4da16d194e32bfff29d34e32cd3557
+  .claude/skills/adr/SKILL.md: sha256:06ec72317c3ef7085b3c76d608a08bdb69af3ea9a6cfcc51a0fa71ff8fb53868
+  .claude/skills/adr/references/adr-template-minimal.md: sha256:fdacd20ca99df002451fa8724e7b0b204c252604b586fafbfb60bbbf28a47a9f
+  .claude/skills/adr/references/adr-template.md: sha256:1dd2cbf38d24ceb5f7248b2e91358c8186ea6c318f036aa29b7e039c09f0cafb
+  .claude/skills/apm/SKILL.md: sha256:2a467a2b87a4cc4d44859790f77f824165e77b61077017d25f9db95d124130c1
+  .claude/skills/cocogitto/SKILL.md: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
+  .claude/skills/cocogitto/references/changelog-templates.md: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
+  .claude/skills/cocogitto/references/config-reference.md: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
+  .claude/skills/lefthook/SKILL.md: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
+  .claude/skills/task/SKILL.md: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+  .github/instructions/workspace.instructions.md: sha256:703986bbcea17220d52fcc6ef6b20b497e0341a26912d437b914bb956c9f1b81

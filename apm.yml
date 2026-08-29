@@ -1,0 +1,18 @@
+$schema: https://microsoft.github.io/apm/specs/schemas/manifest-v0.1.schema.json
+name: fastdi
+version: 0.0.0
+targets:
+  - claude
+  - copilot
+dependencies:
+  apm:
+    - github/awesome-copilot/skills/git-commit#main
+    - ludo-technologies/python-best-practices/skills/coding-standards#main
+    - ludo-technologies/python-best-practices/skills/testing#main
+    - ludo-technologies/python-best-practices/skills/tooling#main
+    - tttpob/bioinfo-skills/pixi#main
+includes: auto
+scripts: {}
+compilation:
+  exclude:
+    - ".pixi/**"

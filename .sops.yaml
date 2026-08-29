@@ -1,0 +1,4 @@
+# spec: https://getsops.io/docs/#using-sopsyaml-conf-to-select-kms-pgp-and-age-for-new-files
+
+creation_rules:
+  - age: age18d6w7lzs06yc7zycans0dptu66vjxc7743zj5td4gkpncsvr4cesn35l76

@@ -1,0 +1,124 @@
+# NB: For this workflow to work with the built in GITHUB_TOKEN.
+# You must tick "Allow GitHub Actions to create and approve pull requests".
+# In the repository settings under Actions > General > Workflow permissions.
+#
+# Then you would also give the renovate job these permissions:
+#
+# ```yaml
+# permissions:
+#   issues: write
+#   contents: write
+#   pull-requests: write
+# ```
+#
+# Assuming the above is all done, using the built in GITHUB_TOKEN is sufficient
+# for Renovate to create pull requests that update anything but github actions
+# themselves, if you want Renovate to update the version of the github actions
+# used in this workflow files, you must obtain a token with the workflow scope.
+# see: https://github.com/renovatebot/github-action#special-token-requirements-when-using-the-github-actions-manager
+#
+# There are at least 2 ways to do this:
+# - One is to create a personal access token and add it as a secret in your repo,
+# - The other is to create a GitHub App and use the actions/create-github-app-token
+#
+# In this repo we have setup a Github App called "brads-renovate-bot[bot]".
+#
+# NB: If you use this exact text "brads-renovate[bot]" as Github App name,
+# Github will convert "[bot]" to "-bot" and then automatically append it's own
+# "[bot]" to the end of the name and this is how we ended up with "brads-renovate-bot[bot]"
+# as the final name of the Github App :)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+  issues:
+    types:
+      - edited
+  pull_request:
+    types:
+      - edited
+
+jobs:
+  renovate:
+    # NB: The `issues` trigger fires for every issue in the repo, but we only
+    # want this job to re-run when the Renovate Dependency Dashboard issue changes.
+    # You will need to change the issue number below after initial creation.
+    #
+    # We also skip when the change was made by renovate itself, to avoid a recursive loop,
+    # if using the built in GITHUB_TOKEN, update the login to "github-actions[bot]".
+    #
+    # Or otherwise update it to the name of the identity that Renovate runs as.
+    #
+    # The pull_request trigger fires for any PR edit, but we only want to re-run Renovate
+    # when someone ticks the "If you want to rebase/retry this PR, check this box" checkbox
+    # on a PR that Renovate itself opened.
+    if: |
+      (github.event_name != 'issues' || github.event.issue.number == 15)
+      && (github.event_name != 'pull_request' || (github.event.pull_request.user.login == 'brads-renovate-bot[bot]' && contains(github.event.pull_request.body || '', '- [x] <!-- rebase-check -->')))
+      && github.event.sender.login != 'brads-renovate-bot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔑 Authenticate as Github App
+        uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ secrets.RENOVATE_CLIENT_ID }}
+          private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+
+      - name: ⬇️ Git Checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: 🤖 Run Renovate
+        uses: renovatebot/github-action@v46.2.4
+        env:
+          RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+
+  pixi:
+    if: github.event_name != 'issues' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔑 Authenticate as Github App
+        uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ secrets.RENOVATE_CLIENT_ID }}
+          private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+
+      - name: ⬇️ Git Checkout
+        uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: ✨ Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.10.2
+        with:
+          run-install: false
+
+      - name: Update lockfiles
+        run: |
+          set -o pipefail
+          pixi update --json | pixi exec pixi-diff-to-markdown >> diff.md
+
+      - name: Update Pixi it's self
+        shell: pixi run bash -e {0}
+        run: |
+          sync_gha_pixi_version.py
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          commit-message: "chore(deps): update pixi"
+          title: "chore(deps): update pixi"
+          body-path: diff.md
+          branch: update-pixi
+          base: master
+          labels: pixi
+          delete-branch: true
+          add-paths: |
+            pixi.lock
+            .github/workflows/*.yaml

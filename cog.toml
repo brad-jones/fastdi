@@ -1,0 +1,62 @@
+# The Conventional Commits toolbox
+# see: https://github.com/cocogitto/cocogitto
+
+tag_prefix = "v"
+branch_whitelist = ["master"]
+from_latest_tag = true
+
+pre_bump_hooks = [
+  "task package COG_VERSION_TAG=v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME=fastdi",
+]
+
+post_bump_hooks = [
+  "task publish COG_VERSION_TAG=v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME=fastdi",
+]
+
+# Use something more like this if you have multiple packages to release.
+# See below for an example of how to set up multiple packages.
+#
+# pre_package_bump_hooks = [
+#   "task package COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
+# ]
+#
+# post_package_bump_hooks = [
+#   "task publish COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
+# ]
+
+[commit_types]
+build = { bump_patch = true }
+ci = { bump_patch = true }
+revert = { bump_patch = true }
+docs = { bump_patch = true }
+test = { bump_patch = true }
+style = { bump_patch = true }
+chore = { bump_patch = true }
+perf = { bump_patch = true }
+
+# Create a CHANGELOG that includes helpful links to github diffs / commits / PRs, etc.
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+owner = "brad-jones"
+repository = "fastdi"
+authors = [{ signature = "Brad Jones", username = "brad-jones" }]
+
+# [monorepo.packages]
+#
+# [monorepo.packages.foo]
+# path = "projects/foo"
+# include = [
+#   "projects/foo/**",
+#   "libs/that-foo-depends-on/**",
+#   ".github/workflows/foos-pipeline.yaml",
+# ]
+#
+# [monorepo.packages.bar]
+# path = "projects/bar"
+# include = [
+#   "projects/bar/**",
+#   "libs/that-bar-depends-on/**",
+#   ".github/workflows/bars-pipeline.yaml",
+# ]

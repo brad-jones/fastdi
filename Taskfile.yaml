@@ -1,0 +1,122 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# https://taskfile.dev
+version: 3
+
+dotenv: [".env"]
+set: [pipefail]
+shopt: [globstar]
+
+tasks:
+  init:
+    desc: Setup dev env (anything that pixi can't install and setup for us).
+    cmds:
+      - task: init:lefthook
+      - task: init:apm
+      - task: init:python
+      - git config pull.rebase true
+      - '{{if not .CI}}git config core.editor "code --wait"{{end}}'
+      - '{{if not .CI}}git config commit.template "$PWD/.gitmsgtpl"{{end}}'
+      - "{{if .CI}}git config --global user.name github-actions[bot]{{end}}"
+      - "{{if .CI}}git config --global user.email github-actions[bot]@users.noreply.github.com{{end}}"
+
+  init:apm:
+    internal: true
+    sources:
+      - ./.apm/**/*
+      - apm.lock.yaml
+    cmds:
+      - apm install {{if .APM_TARGET}}--target {{.APM_TARGET}}{{end}}
+      - apm compile --clean {{if .APM_TARGET}}--target {{.APM_TARGET}}{{end}}
+
+  init:lefthook:
+    if: '! [ "$CI" = "true" ]'
+    internal: true
+    sources:
+      - lefthook.yaml
+    cmds:
+      - lefthook install -f
+
+  init:python:
+    internal: true
+    sources:
+      - uv.lock
+    cmds:
+      - uv sync
+
+  update:
+    desc: Interactively updates our dependencies to their latest versions.
+    summary: |
+      As per docs/decisions/0014-use-renovate-over-dependabot-for-dependency-updates.md
+      we use Renovate for automated dependency updates, but this task can be run manually
+      by a developer when they want to update all dependencies in one hit.
+    cmds:
+      - pixi self-update
+      - uv run scripts/sync_gha_pixi_version.py
+      - pixi upgrade
+      - dprint config upgrade
+      - uv lock --upgrade
+
+  lint:
+    desc: Lints our code to ensure it remains of a high quality.
+    silent: true
+    cmds:
+      - |
+        failed=0
+        dprint check || failed=1
+        ruff check || failed=1
+        pyright || failed=1
+        exit $failed
+
+  lint-fix:
+    desc: Attempts to fix any linting issues, reverting all changes if verification fails afterwards.
+    cmds:
+      - task: test
+      - uv run scripts/save_state.py
+      - defer: >-
+          uv run scripts/restore_state.py
+          --verify-with "task test lint"
+      - dprint fmt
+      - ruff check --fix --unsafe-fix
+
+  fmt:
+    desc: Formats our code to ensure it looks consistent.
+    cmds:
+      - dprint fmt
+
+  test:
+    desc: Runs our test suites to ensure our code is working as expected.
+    cmds:
+      - 'echo "TODO: Run your test suites here."'
+
+  package:
+    desc: This is triggered by cog as a pre_bump_hook to generate all the final publishable artifacts
+    deps:
+      - lint
+    requires:
+      vars:
+        - COG_VERSION
+        - COG_VERSION_TAG
+        - COG_PACKAGE_NAME
+    cmds:
+      - 'echo "TODO: Add commands to build your package and prepare it for publishing here. You can use the COG_VERSION, COG_VERSION_TAG, and COG_PACKAGE_NAME environment variables to customize the build based on the version being released."'
+
+  publish:
+    desc: This is triggered by cog as a post_bump_hook to publish all the final publishable artifacts
+    requires:
+      vars:
+        - COG_VERSION
+        - COG_VERSION_TAG
+        - COG_PACKAGE_NAME
+    cmds:
+      # Push up the CHANGELOG.md that has now been written by cog.
+      - git push && git push --tags
+      - cog_extract_changelog.py < CHANGELOG.md > GITHUB_CHANGELOG.md
+      - gh release create {{.COG_VERSION_TAG}} -F GITHUB_CHANGELOG.md
+
+      # Use this instead if you have additional assets to upload with your
+      # release - the things created by the above package task - make sure
+      # to update the command to include the correct path to your assets.
+      # - gh release create {{.COG_VERSION_TAG}} -F GITHUB_CHANGELOG.md ./publish/*
+
+      # This is where you might also publish to package registries like npm,
+      # PyPI, NuGet, docker hub, etc.

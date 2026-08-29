@@ -1,0 +1,47 @@
+[project]
+name = "fastdi"
+version = "0.0.0"
+description = "A lightweight IoC container for Python, inspired by Microsoft.Extensions.DependencyInjection."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastdi"]
+
+[tool.uv.workspace]
+members = ["specs/*"]
+
+[dependency-groups]
+dev = [
+  "pyright>=1.1.411",
+  "pytest>=8.4",
+  "ruff>=0.16.5",
+]
+
+# Never let uv download its own CPython build; always resolve against a
+# python already discoverable on PATH — i.e. the one pixi manages/activates.
+[tool.uv]
+python-preference = "only-system"
+python-downloads = "never"
+
+# Pins pyright to our one and only .venv so that regardless of how pyright is called,
+# it will always resolve against the same Python environment that uv manages.
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+# Ensure ruff if configured to match the dprint config in the root of the repo,
+# so that we don't get the 2 tools fighting over formatting.
+[tool.ruff]
+line-length = 120
+indent-width = 2
+extend-exclude = ["xcaf"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
