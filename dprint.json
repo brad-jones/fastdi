@@ -1,0 +1,48 @@
+{
+  "lineWidth": 120,
+  "newLineKind": "lf",
+  "useTabs": false,
+  "incremental": true,
+  "json": {},
+  "yaml": {},
+  "toml": {},
+  "markdown": {},
+  "ruff": {
+    "associations": ["**/*.py"],
+    "indentWidth": 2
+  },
+  "exec": {
+    "cwd": "${configDir}",
+    "associations": ["**/*.py"],
+    "commands": [
+      {
+        "command": "ruff check --select I --stdin-filename {{file_path}} --fix -",
+        "exts": ["py"],
+        "stdin": true
+      }
+    ]
+  },
+  "includes": [
+    "**/*.{py,json,yml,yaml,toml,md}"
+  ],
+  "excludes": [
+    "**/.git",
+    "**/.pixi",
+    "**/.venv",
+    "**/.task",
+    "**/.ruff_cache",
+    "**/apm.lock.yaml",
+    "**/pixi.lock",
+    "**/uv.lock",
+    "apm_modules/",
+    "CHANGELOG.md"
+  ],
+  "plugins": [
+    "npm:@dprint/ruff@0.8.3",
+    "npm:@dprint/toml@0.8.0",
+    "npm:@dprint/json@0.23.0",
+    "npm:@dprint/markdown@0.23.1",
+    "npm:dprint-plugin-yaml@0.6.0",
+    "npm:@dprint/exec@0.7.3/plugin.json@704701df449dd7e942a71144773778ac529d68c2e4657bfc236d393b898b9a67"
+  ]
+}

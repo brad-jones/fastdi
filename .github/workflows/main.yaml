@@ -1,0 +1,65 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+env:
+  CI: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      # Needed by `cog bump` to push the new version commit and tag back to the repository.
+      contents: write
+
+      # Uncomment for attestations
+      # id-token: write
+      # attestations: write
+      # artifact-metadata: write
+    steps:
+      - name: ⬇️ Git Checkout
+        uses: actions/checkout@v7
+        with:
+          # NB: This is important so that cocogitto can correctly determine the
+          # next version based on the commit history. If this is not set, the
+          # checkout will be shallow and cocogitto will not see the full commit
+          # history, resulting in incorrect version bumps.
+          fetch-depth: 0
+
+      - name: ✨ Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.10.2
+        with:
+          pixi-version: v0.78.0
+          activate-environment: true
+
+      - name: 🛠️ Additional Initialization
+        run: task init
+
+      - name: 🔑 Prove we can read our SOPs secrets
+        run: sops.py get -k TOP_SECRET
+        env:
+          SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+
+      - name: 🚀 Package & Publish Next Version
+        # NB: Alternatively just call `cog bump --auto` here.
+        # But then cog will fail with a non-zero exit code if there are no
+        # changes to commit, which causes the workflow to fail even though it
+        # actually succeeded in doing its job (i.e. determining that there are
+        # no changes and thus no new version to release).
+        run: try_cog_bump.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # If your pipeline produces build artifacts like compiled binaries,
+      # you can create attestations for them using the `actions/attest` action.
+      # This will allow your users to verify the integrity of your build artifacts.
+      # see: https://github.com/actions/attest
+      #
+      # - name: 🏷️ Upload Attestations
+      #   uses: actions/attest@v4
+      #   with:
+      #     subject-path: |
+      #       dist/foo
+      #       dist/bar
