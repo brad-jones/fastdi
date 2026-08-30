@@ -1,7 +1,7 @@
 ---
-status: draft
+status: done
 date: 2026-08-30
-completed:
+completed: 2026-08-30
 specs: [scoped-services]
 rules: [public-api-requires-docstrings]
 ---
@@ -391,4 +391,14 @@ the final "un-scoped root acts as its own scope" line prints `True`.
 
 ## Deviations
 
-none yet
+- `_provider.py`'s `_resolve` was written with the explicit `if`/`elif`/`else` cache-selection chain the plan
+  offered as the alternative to a per-call `{Lifetime.SINGLETON: ..., Lifetime.SCOPED: ...}.get(...)` dict, since it
+  avoids allocating a dict literal on every resolution. Both were pre-approved as equivalent in the plan; this is a
+  choice between them, not a divergence.
+- While writing `tests/test_scoped_registration.py`'s `test_last_registration_wins_singleton_to_scoped`, the first
+  draft used `factory=lambda _: "not a concrete instance"` (copied from the analogous singleton-registration test)
+  and asserted `first is not second` across the root and a new scope. That failed — not because of a caching bug,
+  but because CPython interns identical string literals, so two independently-produced `"not a concrete instance"`
+  values are the same object regardless of scoping. Rewrote the test to have the factory return a fresh `Marker()`
+  instance each call, which is what makes an identity assertion meaningful there. No production code was affected;
+  this was purely a test-authoring correction caught by actually running the suite.

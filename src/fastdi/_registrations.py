@@ -13,6 +13,7 @@ class Lifetime(Enum):
 
   TRANSIENT = auto()
   SINGLETON = auto()
+  SCOPED = auto()
 
 
 @dataclass(frozen=True, slots=True)

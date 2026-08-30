@@ -8,7 +8,7 @@ from ._errors import (
   RegistrationError,
   ServiceNotRegisteredError,
 )
-from ._provider import Factory, ServiceProvider
+from ._provider import Factory, ServiceProvider, ServiceScope
 
 __all__ = [
   "CircularDependencyError",
@@ -19,4 +19,5 @@ __all__ = [
   "ServiceCollection",
   "ServiceNotRegisteredError",
   "ServiceProvider",
+  "ServiceScope",
 ]
