@@ -35,13 +35,28 @@ python-downloads = "never"
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
+# ./specs is deliberately written ahead of ./src/fastdi, so it type checks against an
+# API that doesn't exist yet - excluded here so `task lint` stays usable while a spec
+# is waiting to be implemented.
+exclude = ["**/node_modules", "**/__pycache__", "**/.*", "specs"]
 
 # Ensure ruff if configured to match the dprint config in the root of the repo,
 # so that we don't get the 2 tools fighting over formatting.
 [tool.ruff]
 line-length = 120
 indent-width = 2
-extend-exclude = ["xcaf"]
+extend-exclude = [
+  ".git",
+  ".pixi",
+  ".venv",
+  ".task",
+  ".ruff_cache",
+  "apm.lock.yaml",
+  "pixi.lock",
+  "uv.lock",
+  "apm_modules",
+  "CHANGELOG.md",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
