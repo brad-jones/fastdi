@@ -9,9 +9,11 @@ import pytest
 from singleton_scope.main import (
   DEFAULT_APP_CONFIG,
   DEFAULT_DSN,
+  DEFAULT_FEATURE_FLAGS,
   AppConfig,
   Clock,
   Database,
+  FeatureFlags,
   FixedClock,
   RequestCounter,
   RequestHandler,
@@ -65,6 +67,14 @@ def test_an_instance_registration_returns_the_exact_object_that_was_registered()
   assert config is DEFAULT_APP_CONFIG
 
 
+def test_a_bare_instance_registration_resolves_under_its_own_runtime_type() -> None:
+  provider = build_provider()
+
+  flags = provider.get_required_service(FeatureFlags)
+
+  assert flags is DEFAULT_FEATURE_FLAGS
+
+
 def test_a_transient_consumer_still_gets_a_new_instance_every_resolution() -> None:
   provider = build_provider()
 
@@ -81,6 +91,7 @@ def test_a_transient_consumer_shares_its_singleton_dependencies_across_resolutio
   assert first.clock is second.clock
   assert first.counter is second.counter
   assert first.database is second.database
+  assert first.flags is second.flags
 
 
 def test_singleton_state_mutated_through_one_consumer_is_visible_through_another() -> None:
