@@ -2,6 +2,12 @@ version = 1
 revision = 3
 requires-python = ">=3.14"
 
+[manifest]
+members = [
+    "fastdi",
+    "spec-constructor-injection",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -130,6 +136,17 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/5b/42/ee8e68a207b9127fcde6c3d7e197def432f346cb1af159e1fa14ca0d1cdc/ruff-0.16.5-py3-none-win_amd64.whl", hash = "sha256:ddc6385fb2137f616357ca03d6c74f4be987f80fed4008566b754f6032b8546f", size = 10516714, upload-time = "2026-08-27T16:34:13.963Z" },
     { url = "https://files.pythonhosted.org/packages/73/e3/7df5a396e445b9ba49ce9a9437439a4d80042c61c0ade199abf8d16de1ac/ruff-0.16.5-py3-none-win_arm64.whl", hash = "sha256:a64abe90968719b851bb7cedffaa8753fbdbdadab483089682db623f3edc587e", size = 10391564, upload-time = "2026-08-27T16:34:16.064Z" },
 ]
+
+[[package]]
+name = "spec-constructor-injection"
+version = "0.0.0"
+source = { virtual = "specs/constructor-injection" }
+dependencies = [
+    { name = "fastdi" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "fastdi", editable = "." }]
 
 [[package]]
 name = "typing-extensions"
