@@ -4,7 +4,8 @@ from collections.abc import Callable, Mapping
 from typing import Any
 
 from ._errors import ServiceNotRegisteredError
-from ._validation import FactoryPlan, ResolutionPlan, TypePlan
+from ._registrations import Lifetime
+from ._validation import FactoryPlan, InstancePlan, ResolutionPlan, TypePlan
 
 type Factory[T] = Callable[["ServiceProvider"], T]
 
@@ -19,6 +20,7 @@ class ServiceProvider:
     `ServiceCollection.build_service_provider` instead.
     """
     self._plan = plan
+    self._singletons: dict[type, Any] = {}
 
   def get_service[T](self, service_type: type[T], /) -> T | None:
     """Resolve `service_type`, or return `None` if nothing is registered for it.
@@ -27,8 +29,10 @@ class ServiceProvider:
       service_type: The type to resolve.
 
     Returns:
-      A new instance of `service_type`, or `None` if it has no registration. Any other exception
-      raised while resolving a registered factory or constructor propagates unchanged.
+      An instance of `service_type`, or `None` if it has no registration. Depending on how
+      `service_type` was registered, the instance may be freshly constructed or a cached one shared
+      across calls. Any other exception raised while resolving a registered factory or constructor
+      propagates unchanged.
     """
     if service_type is ServiceProvider:
       return self  # type: ignore[return-value]
@@ -37,7 +41,7 @@ class ServiceProvider:
     if resolution is None:
       return None
 
-    return self._resolve(resolution)
+    return self._resolve(service_type, resolution)
 
   def get_required_service[T](self, service_type: type[T], /) -> T:
     """Resolve `service_type`, raising if nothing is registered for it.
@@ -46,7 +50,8 @@ class ServiceProvider:
       service_type: The type to resolve.
 
     Returns:
-      A new instance of `service_type`.
+      An instance of `service_type`. Depending on how `service_type` was registered, the instance may
+      be freshly constructed or a cached one shared across calls.
 
     Raises:
       ServiceNotRegisteredError: If `service_type` has no registration.
@@ -58,13 +63,21 @@ class ServiceProvider:
     if resolution is None:
       raise ServiceNotRegisteredError(service_type)
 
-    return self._resolve(resolution)
+    return self._resolve(service_type, resolution)
 
-  def _resolve(self, resolution: ResolutionPlan) -> Any:
-    if isinstance(resolution, FactoryPlan):
-      return resolution.factory(self)
+  def _resolve(self, service_type: type, resolution: ResolutionPlan) -> Any:
+    if isinstance(resolution, InstancePlan):
+      return resolution.instance
 
-    return self._build(resolution)
+    if resolution.lifetime is Lifetime.SINGLETON and service_type in self._singletons:
+      return self._singletons[service_type]
+
+    instance = resolution.factory(self) if isinstance(resolution, FactoryPlan) else self._build(resolution)
+
+    if resolution.lifetime is Lifetime.SINGLETON:
+      self._singletons[service_type] = instance
+
+    return instance
 
   def _build(self, plan: TypePlan) -> Any:
     positional: list[Any] = []

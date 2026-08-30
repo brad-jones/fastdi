@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any
 
 from ._errors import CircularDependencyError, MissingDependencyError
 from ._inspection import constructor_parameters
-from ._registrations import FactoryRegistration, Registration
+from ._registrations import FactoryRegistration, InstanceRegistration, Lifetime, Registration
 
 if TYPE_CHECKING:
   from ._provider import Factory
@@ -23,14 +23,21 @@ class Dependency:
 class TypePlan:
   implementation_type: type
   dependencies: tuple[Dependency, ...]
+  lifetime: Lifetime
 
 
 @dataclass(frozen=True, slots=True)
 class FactoryPlan:
   factory: Factory[Any]
+  lifetime: Lifetime
 
 
-type ResolutionPlan = TypePlan | FactoryPlan
+@dataclass(frozen=True, slots=True)
+class InstancePlan:
+  instance: Any
+
+
+type ResolutionPlan = TypePlan | FactoryPlan | InstancePlan
 
 
 def build_plan(registrations: Mapping[type, Registration], /) -> dict[type, ResolutionPlan]:
@@ -44,8 +51,12 @@ def build_plan(registrations: Mapping[type, Registration], /) -> dict[type, Reso
       return
 
     registration = registrations[service_type]
+    if isinstance(registration, InstanceRegistration):
+      plan[service_type] = InstancePlan(instance=registration.instance)
+      return
+
     if isinstance(registration, FactoryRegistration):
-      plan[service_type] = FactoryPlan(factory=registration.factory)
+      plan[service_type] = FactoryPlan(factory=registration.factory, lifetime=registration.lifetime)
       return
 
     if service_type in stack:
@@ -85,7 +96,11 @@ def build_plan(registrations: Mapping[type, Registration], /) -> dict[type, Reso
 
         raise MissingDependencyError(service_type, implementation_type, parameter.name, annotation)
 
-      plan[service_type] = TypePlan(implementation_type=implementation_type, dependencies=tuple(dependencies))
+      plan[service_type] = TypePlan(
+        implementation_type=implementation_type,
+        dependencies=tuple(dependencies),
+        lifetime=registration.lifetime,
+      )
     finally:
       stack.pop()
 

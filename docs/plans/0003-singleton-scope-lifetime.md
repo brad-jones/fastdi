@@ -1,7 +1,7 @@
 ---
-status: draft
+status: done
 date: 2026-08-30
-completed:
+completed: 2026-08-30
 specs: [singleton-scope]
 rules: [public-api-requires-docstrings]
 ---
@@ -325,4 +325,9 @@ different-objects line should print `True` (transient), and the counter should r
 
 ## Deviations
 
-none yet
+- `pyright` emits `reportInvalidTypeVarUse` (warning, not error — `task lint` still exits `0`) on the
+  `add_singleton[T](self, instance: T, /) -> Self` overload, since `T` appears only once and pyright suggests
+  `object` instead. Left as `T`, matching the spec's literal documented signature verbatim
+  ([specs/singleton-scope/README.md](../../specs/singleton-scope/README.md#public-api)) rather than deviating from
+  it for a cosmetic type-checker nicety with no behavioral effect and no loss of caller-facing type safety (nothing
+  else in that overload depends on binding `T`).
