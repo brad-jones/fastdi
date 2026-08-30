@@ -182,6 +182,76 @@ class ServiceCollection:
     self._registrations[service_type] = TypeRegistration(implementation_type=service_type, lifetime=Lifetime.SINGLETON)
     return self
 
+  @overload
+  def add_scoped[T](self, service_type: type[T], /) -> Self: ...
+
+  @overload
+  def add_scoped[T](self, service_type: type[T], implementation_type: type[T], /) -> Self: ...
+
+  @overload
+  def add_scoped[T](self, service_type: type[T], /, *, factory: Factory[T]) -> Self: ...
+
+  def add_scoped[T](
+    self,
+    service_type: type[T],
+    implementation_type: type[T] | None = None,
+    /,
+    *,
+    factory: Factory[T] | None = None,
+  ) -> Self:
+    """Register a scoped service, in one of three shapes.
+
+    Called as `add_scoped(Impl)` to register a concrete class under itself, as `add_scoped(ServiceType, Impl)`
+    to register an implementation under a different key (`ServiceType` may be a `Protocol`, an ABC, or any other
+    class — it is only ever used as a dictionary key), or as `add_scoped(ServiceType, factory=...)` to supply a
+    callable that builds the instance from a `ServiceProvider`. Within one `ServiceScope` (or the un-scoped root
+    provider, which acts as its own scope), the first resolution builds the instance and every later resolution
+    through that same scope returns it again; a different scope gets its own, independently-built instance.
+
+    Args:
+      service_type: The type resolutions are looked up under.
+      implementation_type: The concrete class to construct, when different from `service_type`.
+      factory: A callable that receives the `ServiceProvider` and returns the instance.
+
+    Returns:
+      `self`, so calls can be chained.
+
+    Raises:
+      RegistrationError: If both `implementation_type` and `factory` are supplied, if `service_type` or
+        `implementation_type` is not a class, if the class that would be instantiated is abstract, if
+        `factory` is not callable or is an `async def` function, or if `service_type` is
+        `ServiceProvider`.
+    """
+    if implementation_type is not None and factory is not None:
+      raise RegistrationError("Cannot supply both `implementation_type` and `factory`.")
+
+    if not isinstance(service_type, type):
+      raise RegistrationError(f"`service_type` must be a class, got {service_type!r}.")
+
+    if service_type is ServiceProvider:
+      raise RegistrationError("`ServiceProvider` is implicitly registered and cannot be overridden.")
+
+    if factory is not None:
+      if not callable(factory):
+        raise RegistrationError(f"`factory` must be callable, got {factory!r}.")
+      if inspect.iscoroutinefunction(factory):
+        raise RegistrationError("`factory` must not be an `async def` function.")
+      self._registrations[service_type] = FactoryRegistration(factory=factory, lifetime=Lifetime.SCOPED)
+      return self
+
+    if implementation_type is not None:
+      if not isinstance(implementation_type, type):
+        raise RegistrationError(f"`implementation_type` must be a class, got {implementation_type!r}.")
+      if is_abstract(implementation_type):
+        raise RegistrationError(f"`implementation_type` {implementation_type.__name__!r} is abstract.")
+      self._registrations[service_type] = TypeRegistration(implementation_type=implementation_type, lifetime=Lifetime.SCOPED)
+      return self
+
+    if is_abstract(service_type):
+      raise RegistrationError(f"`service_type` {service_type.__name__!r} is abstract.")
+    self._registrations[service_type] = TypeRegistration(implementation_type=service_type, lifetime=Lifetime.SCOPED)
+    return self
+
   def build_service_provider(self) -> ServiceProvider:
     """Take a snapshot of this collection and build a validated `ServiceProvider` over it.
 

@@ -13,6 +13,7 @@ def test_all_exports_exactly_the_documented_names() -> None:
     "ServiceNotRegisteredError",
     "MissingDependencyError",
     "CircularDependencyError",
+    "ServiceScope",
   }
 
   for name in fastdi.__all__:
