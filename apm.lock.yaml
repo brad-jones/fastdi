@@ -456,7 +456,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+  content_hash: sha256:05572f0ce22cd5cffb079b5fb1aaf21a6dd0ecd5cd423312fa71920b0b1ee4d5
 - kind: project-relative
   target: agents
   value: .agents/skills/create-spec
@@ -969,7 +969,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+  content_hash: sha256:05572f0ce22cd5cffb079b5fb1aaf21a6dd0ecd5cd423312fa71920b0b1ee4d5
 - kind: project-relative
   target: claude
   value: .claude/skills/create-spec
@@ -2170,7 +2170,7 @@ local_deployed_file_hashes:
   .agents/skills/cocogitto/SKILL.md: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
   .agents/skills/cocogitto/references/changelog-templates.md: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
   .agents/skills/cocogitto/references/config-reference.md: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
-  .agents/skills/create-rule/SKILL.md: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+  .agents/skills/create-rule/SKILL.md: sha256:05572f0ce22cd5cffb079b5fb1aaf21a6dd0ecd5cd423312fa71920b0b1ee4d5
   .agents/skills/create-spec/SKILL.md: sha256:4347e6318dc4edde07ca439c5688dcd5aafde27b3110a4feb133653eacbd5972
   .agents/skills/execute-plan/SKILL.md: sha256:79439ae35616dbbdd858a1b30c1c62ffa6319fbbd32695bcece11aa3153181c3
   .agents/skills/lefthook/SKILL.md: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
@@ -2185,7 +2185,7 @@ local_deployed_file_hashes:
   .claude/skills/cocogitto/SKILL.md: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
   .claude/skills/cocogitto/references/changelog-templates.md: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
   .claude/skills/cocogitto/references/config-reference.md: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
-  .claude/skills/create-rule/SKILL.md: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+  .claude/skills/create-rule/SKILL.md: sha256:05572f0ce22cd5cffb079b5fb1aaf21a6dd0ecd5cd423312fa71920b0b1ee4d5
   .claude/skills/create-spec/SKILL.md: sha256:4347e6318dc4edde07ca439c5688dcd5aafde27b3110a4feb133653eacbd5972
   .claude/skills/execute-plan/SKILL.md: sha256:79439ae35616dbbdd858a1b30c1c62ffa6319fbbd32695bcece11aa3153181c3
   .claude/skills/lefthook/SKILL.md: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
