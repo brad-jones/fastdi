@@ -6,6 +6,7 @@ requires-python = ">=3.14"
 members = [
     "fastdi",
     "spec-constructor-injection",
+    "spec-scoped-services",
     "spec-singleton-scope",
 ]
 
@@ -142,6 +143,17 @@ wheels = [
 name = "spec-constructor-injection"
 version = "0.0.0"
 source = { virtual = "specs/constructor-injection" }
+dependencies = [
+    { name = "fastdi" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "fastdi", editable = "." }]
+
+[[package]]
+name = "spec-scoped-services"
+version = "0.0.0"
+source = { virtual = "specs/scoped-services" }
 dependencies = [
     { name = "fastdi" },
 ]
