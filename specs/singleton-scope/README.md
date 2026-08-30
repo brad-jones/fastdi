@@ -29,7 +29,7 @@ class ServiceCollection:
   def add_singleton[T](self, service_type: type[T], /) -> Self: ...
 
   @overload
-  def add_singleton[T](self, instance: T, /) -> Self: ...
+  def add_singleton(self, instance: object, /) -> Self: ...
 
   @overload
   def add_singleton[T](self, service_type: type[T], implementation_type: type[T], /) -> Self: ...
@@ -216,6 +216,13 @@ Points where the English description had to bend to what Python can actually do,
   lone argument that fails it is shape 2 (`instance`, keyed by `type(instance)`); a lone argument that passes it is
   shape 1 (`service_type`, to be instantiated later). A second argument that fails it is shape 4 (`instance`, keyed
   explicitly); one that passes it is shape 3 (`implementation_type`).
+- **Shape 2's `instance` parameter is typed `object`, not a generic `T`.** A `TypeVar` only earns its keep by linking
+  two positions in a signature — `type[T]` to the value it produces, say. Shape 2 returns `Self`, never `T`, so a
+  `T` on `instance` would bind to nothing else in that overload; static type checkers that catch this (pyright's
+  `reportInvalidTypeVarUse`, among others) flag it as a TypeVar doing no work. `object` says exactly the same thing
+  — "any value, taken as-is" — without that empty promise of propagation. Shape 4's `instance: T` keeps its `T`
+  because it shares one with `service_type: type[T]` in the same signature; the two forms are typed differently on
+  purpose, not by oversight.
 - **A value that is itself a class can't be an "instance," in either arity.** The `isinstance(x, type)` check above
   has exactly one case it can't resolve correctly: registering a class object as _data_ (e.g. a plugin registry
   whose "instance" of interest happens to be a `type`). Both `add_singleton(SomeClass)` and

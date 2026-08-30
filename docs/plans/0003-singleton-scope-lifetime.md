@@ -173,7 +173,7 @@ def add_singleton[T](self, service_type: type[T], /) -> Self: ...
 
 
 @overload
-def add_singleton[T](self, instance: T, /) -> Self: ...
+def add_singleton(self, instance: object, /) -> Self: ...
 
 
 @overload
@@ -325,9 +325,13 @@ different-objects line should print `True` (transient), and the counter should r
 
 ## Deviations
 
-- `pyright` emits `reportInvalidTypeVarUse` (warning, not error — `task lint` still exits `0`) on the
-  `add_singleton[T](self, instance: T, /) -> Self` overload, since `T` appears only once and pyright suggests
-  `object` instead. Left as `T`, matching the spec's literal documented signature verbatim
-  ([specs/singleton-scope/README.md](../../specs/singleton-scope/README.md#public-api)) rather than deviating from
-  it for a cosmetic type-checker nicety with no behavioral effect and no loss of caller-facing type safety (nothing
-  else in that overload depends on binding `T`).
+- `pyright` emitted `reportInvalidTypeVarUse` (warning, not error — `task lint` still exited `0`) on the
+  `add_singleton[T](self, instance: T, /) -> Self` overload, since `T` appeared only once and pyright suggested
+  `object` instead. Originally left as `T`, matching the spec's literal documented signature verbatim, rather than
+  deviating from it for a cosmetic type-checker nicety.
+- **Follow-up, after `docs/rules/zero-lint-warnings.md` was added:** that rule requires `task lint` to report zero
+  warnings, not just exit `0`, and permits an approved spec change when a warning can only be removed that way. The
+  user reviewed this exact diff (`instance: T` → `instance: object`, dropping the now-unused `[T]` from that one
+  overload) and approved it. `specs/singleton-scope/README.md`'s `add_singleton` overload list and this plan's
+  quoted copy of it were both updated to match, and `src/fastdi/_collection.py`'s overload stub was changed the same
+  way. `task lint` now reports zero warnings.
