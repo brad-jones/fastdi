@@ -17,7 +17,7 @@ public API shape (e.g. "should registration be a decorator or a method call?", "
 just singleton/transient?"), ask before scaffolding — a spec built on a guessed API surface just gets rewritten anyway.
 
 If an existing spec under `./specs/` is being refined rather than created fresh, read its current `README.md`,
-`main.py`, and tests first, and edit them in place rather than starting over.
+`src/<name_with_underscores>/main.py`, and tests first, and edit them in place rather than starting over.
 
 ## 2. Sanity-check the design against what Python can actually do
 
@@ -51,43 +51,139 @@ When you find one of these, don't just refuse — propose the closest idiomatic 
 
 ## 3. Scaffold the spec project
 
-Create `./specs/<name>/` (kebab-case, named for the capability, e.g. `constructor-injection`, `scoped-lifetimes`)
-containing:
+Create `./specs/<name>/` (kebab-case, named for the capability, e.g. `constructor-injection`, `scoped-lifetimes`).
+Every spec has the same four files, and each has a distinct job. Keeping them in their lanes is what stops a spec
+from silently turning into a second copy of the framework's unit tests:
 
-- **`README.md`** — the spec itself, in English: what this capability is, the public API it introduces (classes,
-  functions, decorators — signatures included), expected behavior including edge cases and error conditions, and a
-  couple of worked examples in prose. This is what a human or LLM reads to understand _what_ to build; it is the
-  source of truth `plan-implementation` reads from.
-- **`main.py`** — a runnable example exercising the API described in the README, written as if `fastdi` already
-  exists and works. It will fail until `./src/fastdi` implements it — that's expected at this stage.
-- **`pyproject.toml`** — a `uv` workspace member:
+```text
+specs/<name>/
+  README.md                      # the spec, in English - the authoritative source of truth
+  pyproject.toml                 # uv workspace member
+  src/
+    <name_with_underscores>/     # e.g. constructor_injection/
+      __init__.py
+      main.py                    # a toy app, and the container builder the tests drive
+  tests/
+    test_<name>.py               # happy-path integration tests over main.py
+```
 
-  ```toml
-  [project]
-  name = "spec-<name>"
-  version = "0.0.0"
-  requires-python = ">=3.14"
-  dependencies = ["fastdi"]
+**The spec covers the happy path only.** That is the single most important rule here, and the one most likely to be
+violated by accident. A spec exists to show what the capability _looks like when it works_ — the API a user writes,
+the objects they get back, the behavior they can observe. Error conditions, edge cases and sad paths are described
+exhaustively in `README.md` and tested exhaustively in the root `./tests/`, by `plan-implementation` and
+`execute-plan`. They do not appear in `main.py` or in the spec's test suite at all.
 
-  [tool.uv]
-  package = false
+### `README.md` — the spec
 
-  [tool.uv.sources]
-  fastdi = { workspace = true }
-  ```
+What this capability is, the public API it introduces (classes, functions, decorators — signatures included),
+expected behavior including edge cases and error conditions, and a couple of worked examples in prose. Also state
+what's explicitly **out of scope**, so `plan-implementation` doesn't design for it.
 
-  Notes on that template:
-  - `requires-python` must match the root `pyproject.toml`'s value — copy it from there rather than from this
-    skill, which will drift.
-  - `package = false` marks the spec a virtual workspace member: it's never built or published, so it needs no
-    `[build-system]`.
-  - Don't add a `[dependency-groups] dev = ["pytest"]` here. `uv sync` only installs the _root_ project's dependency
-    groups, so a member-level group is inert unless someone remembers `--all-groups`. pytest comes from the root
-    `[dependency-groups] dev` and is already available.
-  - The root `pyproject.toml`'s `[tool.uv.workspace] members = ["specs/*"]` picks the directory up as a member
-    automatically, but that does not install or lock it — see step 5.
-- **`tests/test_<name>.py`** — a pytest suite asserting the behavior described in the README, including the edge cases
-  and error conditions, not just the happy path from `main.py`.
+This is what a human or LLM reads to understand _what_ to build, and it is the source of truth `plan-implementation`
+reads from. It is the right place — the only place — for exhaustive detail. Be thorough here precisely _because_ the
+example and tests aren't: every error condition, boundary and invariant you want implemented has to be written down
+here, or nothing downstream will know to build it. Describing behavior you don't test in this project isn't a gap;
+it's the intended division of labour.
+
+### `src/<name_with_underscores>/main.py` — the toy example
+
+Written as if `fastdi` already exists and works. It will fail until `./src/fastdi` implements it; that's expected at
+this stage. It has two jobs, and they constrain how it's written:
+
+1. **It's a demo.** Running `uv run specs/<name>/src/<name_with_underscores>/main.py` must print something a human
+   can read and learn the capability from. `main()` prints and does nothing else — in particular, **no `assert`
+   statements in `main()`**. Assertions belong in the test suite, where a failure names itself and doesn't vanish
+   under `python -O`.
+2. **It's the test suite's fixture.** Container setup lives in a module-level builder function the tests import and
+   call — never inline inside `main()`:
+
+   ```python
+   def build_provider() -> ServiceProvider:
+     """Registers the whole app: every registration shape, all transient."""
+   ```
+
+Keep the domain small, concrete and boring — a handful of classes that read like a real, tiny app, all wired up
+successfully. Don't add classes that exist only to fail (a deliberately circular pair, a service with an
+unsatisfiable constructor); they make the example harder to read and their behavior is the root `./tests/`'s
+concern. Any value a test will want to assert on (a default DSN, a fixed timestamp) should be a module-level
+constant the test imports, rather than a literal duplicated in both files.
+
+**The package name must be unique across all specs**, which is why it's the spec's own name with underscores rather
+than something generic. `sys.path` and `sys.modules` are process-global, so if two specs both exposed a top-level
+`main`, a repo-wide `pytest` run would import whichever it reached first and silently hand that same module to every
+other spec's tests — wrong objects, passing-looking imports, no error. The per-spec package makes that structurally
+impossible. Import it from the tests by its full path:
+
+```python
+from constructor_injection.main import build_provider, main
+```
+
+`__init__.py` needs nothing in it but a one-line docstring.
+
+### `pyproject.toml`
+
+A `uv` workspace member, and nothing else:
+
+```toml
+[project]
+name = "spec-<name>"
+version = "0.0.0"
+requires-python = ">=3.14"
+dependencies = ["fastdi"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+fastdi = { workspace = true }
+```
+
+Notes on that template:
+
+- `requires-python` must match the root `pyproject.toml`'s value — copy it from there rather than from this
+  skill, which will drift.
+- `package = false` marks the spec a virtual workspace member: it's never built or published, so it needs no
+  `[build-system]`.
+- Don't add a `[dependency-groups] dev = ["pytest"]` here. `uv sync` only installs the _root_ project's dependency
+  groups, so a member-level group is inert unless someone remembers `--all-groups`. pytest comes from the root
+  `[dependency-groups] dev` and is already available.
+- **Do not add a `[tool.pytest.ini_options]` table here.** pytest treats the nearest ancestor `pyproject.toml`
+  that has that table as its rootdir, so adding one would make the spec its own rootdir — and pytest only loads
+  `conftest.py` files from rootdir down, so the repo-root `conftest.py` that puts spec packages on `sys.path` would
+  be skipped and the imports would break. Test configuration is repo-wide and lives in the root `pyproject.toml`.
+- The root `pyproject.toml`'s `[tool.uv.workspace] members = ["specs/*"]` picks the directory up as a member
+  automatically, but that does not install or lock it — see step 5.
+
+### `tests/test_<name>.py` — integration tests
+
+**These are happy-path integration tests, not unit tests.** They import from the spec's `main.py`, drive the
+container it builds through the public `fastdi` API, and assert the behavior a user of the library would care about.
+Under a dozen tests is normal.
+
+No wiring is needed to make them runnable: the repo-root `conftest.py` globs every `specs/*/src` onto `sys.path`, and
+the root `pyproject.toml` has `testpaths = ["tests", "specs"]`. A bare `pytest` at the repo root collects the
+framework suite and every spec suite in one go, and `pytest specs/<name>` runs just this one.
+
+What belongs here:
+
+- The container builds, and the resulting graph comes out fully wired.
+- The resolved objects actually do their job — call a method, assert on what it returns.
+- Semantics observable from outside the container (same instance or not, what gets injected where).
+- A smoke test that `main()` runs and prints what it should (via `capsys`).
+
+What does **not** belong here — this is the part that's easy to get wrong:
+
+- Error conditions. No `pytest.raises`, no assertions about exception types, messages or attributes.
+- Exhaustive enumeration of every constructor shape, parameter form or inference edge case.
+- Anything needing throwaway classes defined in the test file rather than in `main.py`. If the toy app can't express
+  it, it isn't an integration concern.
+- Anything asserting on internals rather than public behavior.
+
+That coverage is real and necessary — it's just unit-level, and it isn't this project's file. `plan-implementation`
+is responsible for specifying it and `execute-plan` for writing it, both under the root `./tests/`. Duplicating it
+here doubles the maintenance and buries the spec's story under fixtures. If you catch yourself reaching for
+`pytest.raises` or parametrizing over a dozen malformed registrations, you're writing the wrong file: describe those
+conditions in `README.md` prose and let the plan pick them up.
 
 ## 4. Make it re-runnable
 
@@ -113,8 +209,18 @@ Do **not** run `task test` here. The spec's suite is supposed to fail until `exe
 
 ## 6. Review the spec as a whole
 
-Does `README.md` unambiguously describe what `main.py` and the tests encode? Would a `plan-implementation` run be able
-to derive a concrete, buildable design from this without more back-and-forth? Iterate with the user until yes.
+Before handing back, check all four of these:
+
+- Does `README.md` unambiguously describe the capability, including all the error conditions and edge cases the
+  example and tests deliberately don't cover?
+- Does `src/<name_with_underscores>/main.py` read as a small, comprehensible app that only ever succeeds, with its
+  container setup in an importable builder function and no assertions in `main()`?
+- Do the tests drive `main.py` and stay on the happy path, or have they drifted into unit tests with their own
+  fixture classes and `pytest.raises` blocks?
+- Would a `plan-implementation` run be able to derive a concrete, buildable design from this — and know which
+  unit-level cases to plan for `./tests/` — without more back-and-forth?
+
+Iterate with the user until yes to all four.
 
 ## 7. Stop here
 
