@@ -7,7 +7,7 @@ env:
   CI: true
 
 jobs:
-  lint:
+  lint_n_test:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Git Checkout
@@ -25,8 +25,12 @@ jobs:
       - name: 🛠️ Additional Initialization
         run: task init
 
-      - name: 📜 Lint Commit Messages
-        run: try_cog_check.py
+      - parallel:
+          - name: 📜 Lint Commit Messages
+            run: try_cog_check.py
 
-      - name: 👮 Enforce our code quality
-        run: task lint
+          - name: 👮 Enforce our code quality
+            run: task lint
+
+          - name: 🧪 Run Tests
+            run: task test
