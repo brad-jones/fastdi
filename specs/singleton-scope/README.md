@@ -29,6 +29,9 @@ class ServiceCollection:
   def add_singleton[T](self, service_type: type[T], /) -> Self: ...
 
   @overload
+  def add_singleton[T](self, instance: T, /) -> Self: ...
+
+  @overload
   def add_singleton[T](self, service_type: type[T], implementation_type: type[T], /) -> Self: ...
 
   @overload
@@ -39,7 +42,7 @@ class ServiceCollection:
 
   def add_singleton[T](
     self,
-    service_type: type[T],
+    service_type_or_instance: type[T] | T,
     implementation_type_or_instance: type[T] | T | None = None,
     /,
     *,
@@ -56,51 +59,63 @@ conditions of, and `build_service_provider()` / resolution still raise `MissingD
 
 ### Registration
 
-`add_singleton` accepts four shapes, and returns `self` so calls can be chained fluently, consistent with
+`add_singleton` accepts five shapes, and returns `self` so calls can be chained fluently, consistent with
 `add_transient`:
 
 1. **`add_singleton(Impl)`** — registers the concrete class `Impl` under itself. The first resolution constructs
    `Impl` via constructor injection; every later resolution returns that same instance.
-2. **`add_singleton(ServiceType, Impl)`** — registers `Impl` under a different key, same rules as
+2. **`add_singleton(instance)`** — registers an already-built object under its own runtime type, `type(instance)`.
+   No `service_type` is given because none is needed: resolving `type(instance)` returns `instance` itself, from
+   the very first call, exactly as if you'd written `add_singleton(type(instance), instance)` (shape 4 below).
+3. **`add_singleton(ServiceType, Impl)`** — registers `Impl` under a different key, same rules as
    `add_transient(ServiceType, Impl)`. `ServiceType` may be abstract; it is only ever used as a dictionary key.
-3. **`add_singleton(ServiceType, instance)`** — registers an already-built object directly. No construction ever
-   happens for this registration: every resolution of `ServiceType`, from the very first, returns `instance` itself.
-4. **`add_singleton(ServiceType, factory=...)`** — registers a callable that will be handed the `ServiceProvider`.
+4. **`add_singleton(ServiceType, instance)`** — registers an already-built object under an explicit key, for when
+   that key isn't simply `type(instance)` — typically a `Protocol` or ABC the instance implements. No construction
+   ever happens for this registration: every resolution of `ServiceType`, from the very first, returns `instance`
+   itself.
+5. **`add_singleton(ServiceType, factory=...)`** — registers a callable that will be handed the `ServiceProvider`.
    The first resolution calls `factory(provider)` and caches whatever it returns; later resolutions skip the call
    and return the cached value.
 
-**Distinguishing shape 2 from shape 3 is a runtime check, not a type-checker trick:** a Python class is itself an
-instance of `type`, so `add_singleton` decides which shape it was given with `isinstance(second_argument, type)`. A
-class → shape 2 (`implementation_type`); anything else → shape 3 (`instance`). This has one sharp edge, documented
-under [Design notes](#design-notes): a value that is itself a class object can never be registered as an _instance_
-this way, because it is indistinguishable from shape 2's `implementation_type`. There is also no way to register a
-literal `None` as an instance: the sentinel default for "no second argument" is itself `None`, so
+**Every one of these distinctions is a runtime check, not a type-checker trick:** a Python class is itself an
+instance of `type`, so `add_singleton` always decides what it was handed with `isinstance(_, type)` — never by
+arity alone. A single argument that's a class selects shape 1; a single argument that isn't selects shape 2. A
+second positional argument that's a class selects shape 3 (`implementation_type`); one that isn't selects shape 4
+(`instance`). This has one sharp edge, documented under [Design notes](#design-notes): a value that is itself a
+class object can never be registered as an _instance_ this way, in either the one- or two-argument form, because
+it's indistinguishable from `implementation_type`. There is also no way to register a literal `None` as an instance
+_via the two-argument form_: the sentinel default for "no second argument" is itself `None`, so
 `add_singleton(ServiceType, None)` is identical to `add_singleton(ServiceType)` — it selects shape 1, not "an
-instance whose value is `None`". A factory that returns `None` (`add_singleton(ServiceType, factory=lambda _: None)`)
-is the way to register that value.
+instance whose value is `None`". (The one-argument form has no such sentinel problem — `add_singleton(None)` is a
+valid, if unusual, call that registers `None` as the singleton for `NoneType`.) A factory that returns `None`
+(`add_singleton(ServiceType, factory=lambda _: None)`) is the general way to register that value under a chosen key.
 
 `add_singleton` raises `RegistrationError` when:
 
 - Both a second positional argument (`implementation_type` or `instance`) and `factory` are supplied.
-- `service_type` is not a class.
+- The first argument is not a class, and a second positional argument or `factory` was also supplied. (A non-class
+  first argument is only valid alone, as shape 2; pairing it with anything else is meaningless.)
 - The class that would be **instantiated** is abstract — i.e. it has a non-empty `__abstractmethods__`, or is a
-  `Protocol` class. This applies to `implementation_type` in shape 2, and to `service_type` in shape 1 where it
-  stands as its own implementation. It does not apply to shape 3: an `instance` is already built, so there is
-  nothing to instantiate and nothing to reject.
+  `Protocol` class. This applies to `implementation_type` in shape 3, and to the first argument in shape 1 where it
+  stands as its own implementation. It does not apply to shape 2 or shape 4: an already-built `instance` is never
+  instantiated, so there is nothing to reject.
 - `factory` is supplied but is not callable, or is a coroutine function.
-- `service_type` is `ServiceProvider`. Exactly as in `constructor-injection`, `ServiceProvider` is implicitly
-  registered as itself in every provider — effectively a singleton already — and that implicit registration cannot
-  be overridden by any registration method, `add_singleton` included.
+- The resolved `service_type` — the first argument in shapes 1, 3, 4 and 5, or `type(instance)` in shape 2 — is
+  `ServiceProvider`. Exactly as in `constructor-injection`, `ServiceProvider` is implicitly registered as itself in
+  every provider — effectively a singleton already — and that implicit registration cannot be overridden by any
+  registration method, `add_singleton` included.
 
 FastDI does **not** verify that `implementation_type` or `instance` satisfies `service_type`, for the same reasons
 given in `constructor-injection`: the container only ever uses `service_type` as a dictionary key.
 
-**Re-registering the same `service_type` is allowed and the last registration wins, regardless of which method
-registered it.** `services.add_transient(Logger, ConsoleLogger); services.add_singleton(Logger, FileLogger)` leaves
-`Logger` registered as a singleton `FileLogger`; the earlier transient registration is discarded outright, not
-merged with the new one.
+**Re-registering the same `service_type` is allowed and the last registration wins, regardless of which method or
+shape registered it** — including shape 2's derived key. `services.add_transient(Logger, ConsoleLogger);
+services.add_singleton(Logger, FileLogger)` leaves `Logger` registered as a singleton `FileLogger`; the earlier
+transient registration is discarded outright, not merged with the new one. Likewise,
+`services.add_singleton(Metrics(sink="stdout")); services.add_singleton(Metrics(sink="file"))` leaves `Metrics`
+registered as whichever `Metrics` instance was passed last — both calls derive the same key, `Metrics`.
 
-**Caching is keyed by the registered `service_type`, not by the implementation class.** Registering the same `Impl`
+**Caching is keyed by the resolved `service_type`, not by the implementation class.** Registering the same `Impl`
 under two different `service_type` keys — `add_singleton(A, Impl)` and `add_singleton(B, Impl)` — produces two
 independent singleton instances, one cached under `A` and one under `B`.
 
@@ -112,26 +127,26 @@ and its parameters resolved exactly like a transient one, and `MissingDependency
 are raised at build time under the same conditions. A cycle running through a mix of singleton and transient
 registrations is still a cycle and is still caught — lifetime plays no part in graph-shape validation.
 
-An instance registration (shape 3) is a trivially satisfied leaf: there is no constructor to walk, so it can never
-be the source of a `MissingDependencyError` and can never participate in a cycle.
+An instance registration (shape 2 or shape 4) is a trivially satisfied leaf: there is no constructor to walk, so it
+can never be the source of a `MissingDependencyError` and can never participate in a cycle.
 
 **Building the provider never constructs anything.** Exactly as with transients, `build_service_provider()` only
 validates that the graph is shape-correct; it does not call any constructor or factory. This holds for singletons
 too — including type- and factory-backed ones — which are always constructed lazily, on their first resolution, not
-at build time. The one exception is shape 3: an `instance` registration has nothing to construct because it was
-already built by the caller before it was ever registered.
+at build time. The exception is shape 2 and shape 4: an `instance` registration has nothing to construct because it
+was already built by the caller before it was ever registered.
 
 ### Resolution and caching
 
 - The first `get_required_service(T)` (or `get_service(T)`) call for a singleton-registered `T` builds the instance
-  — via constructor injection for shape 1/2, by calling `factory(provider)` for shape 4, or by returning the
-  pre-built object immediately for shape 3 — and caches it on the `ServiceProvider` that resolved it.
+  — via constructor injection for shape 1 or shape 3, by calling `factory(provider)` for shape 5, or by returning
+  the pre-built object immediately for shape 2 or shape 4 — and caches it on the `ServiceProvider` that resolved it.
 - Every subsequent resolution of `T`, through either method, on that same provider, returns the identical cached
   object. `provider.get_required_service(T) is provider.get_required_service(T)` holds for a singleton `T`.
 - The cache lives on the `ServiceProvider`, not the `ServiceCollection`. Two providers built from the same collection
   (`collection.build_service_provider()` called twice) each get their own cache and therefore their own singleton
-  instances — except for shape 3, where both providers return the same pre-built `instance`, since it's the same
-  object handed to both collections' registrations to begin with.
+  instances — except for shape 2 and shape 4, where both providers return the same pre-built `instance`, since it's
+  the same object handed to both collections' registrations to begin with.
 - A singleton's dependencies are resolved once, at the moment it is first built, following their own lifetimes as
   normal: a transient dependency nested inside a singleton is built once (because the singleton that owns it is
   built once), while a singleton dependency nested inside a transient is the same cached object every time the
@@ -146,9 +161,13 @@ already built by the caller before it was ever registered.
 ### An app-wide config object handed in whole
 
 A caller builds an `AppConfig` itself — plain construction, no container involved — and registers it directly:
-`services.add_singleton(AppConfig, config)`. Every service that declares an `AppConfig` constructor parameter,
-however deep in the graph and however many times it's resolved, receives that exact object back. There is no
-"first resolution builds it" step to reason about, because it was never the container's job to build it.
+`services.add_singleton(config)`. Because nothing else needs to stand in for `AppConfig` — it's a concrete class,
+not a `Protocol` or an ABC with multiple implementations — the one-argument form is enough; FastDI derives the key
+as `type(config)`, i.e. `AppConfig`. Every service that declares an `AppConfig` constructor parameter, however deep
+in the graph and however many times it's resolved, receives that exact object back. There is no "first resolution
+builds it" step to reason about, because it was never the container's job to build it. Had `AppConfig` needed to be
+resolved through an abstract key instead — say a `Config` protocol with more than one possible implementation — the
+explicit two-argument form, `services.add_singleton(Config, config)`, is what supplies that key.
 
 ### A shared counter behind a transient front door
 
@@ -189,21 +208,27 @@ Explicitly **not** part of this spec, so `plan-implementation` does not need to 
 
 Points where the English description had to bend to what Python can actually do, and how this spec resolved them:
 
-- **A fourth shape, still no call-site type dispatch.** Adding "or a pre-built instance" to `add_transient`'s three
-  shapes looks like C#'s `AddSingleton<T>(T instance)` overload, which .NET resolves at compile time from the static
-  type of the argument. Python has no such thing, so shape 2 (`implementation_type`) and shape 3 (`instance`) are
-  told apart with a single runtime check: `isinstance(second_argument, type)`. Every ordinary object fails that
-  check and lands in shape 3; every class passes it and lands in shape 2.
-- **A value that is itself a class can't be an "instance."** The `isinstance(x, type)` check above has exactly one
-  case it can't resolve correctly: registering a class object as _data_ (e.g. a plugin registry whose "instance" of
-  interest happens to be a `type`). `add_singleton(Registry, SomeClass)` always reads `SomeClass` as
-  `implementation_type` and tries to instantiate it, never as "the instance to hand back verbatim." This is a
-  narrow, acknowledged gap rather than a solved edge case; a factory (`add_singleton(Registry, factory=lambda _:
-  SomeClass)`) is the escape hatch, since a factory's return value is never type-sniffed.
-- **`None` can't be an instance either**, for the same reason C#'s nullable-vs-omitted distinction doesn't translate:
-  Python has no separate "not provided" sentinel distinct from `None` on a plain positional parameter. This spec
-  reuses `None` as the "nothing after `service_type`" default, which means it can't simultaneously mean "the
-  instance is `None`." A factory returning `None` is the way to express that.
+- **Five shapes, still no call-site type dispatch.** Adding "or a pre-built instance" — with or without an explicit
+  key — to `add_transient`'s three shapes looks like C#'s `AddSingleton<T>(T instance)` and non-generic
+  `AddSingleton(object instance)` overloads, which .NET resolves at compile time from the static type of the
+  argument (or picks via the explicit `TService` type parameter). Python has no such thing, so every one of these
+  distinctions is told apart with the same single runtime check, applied positionally: `isinstance(_, type)`. A
+  lone argument that fails it is shape 2 (`instance`, keyed by `type(instance)`); a lone argument that passes it is
+  shape 1 (`service_type`, to be instantiated later). A second argument that fails it is shape 4 (`instance`, keyed
+  explicitly); one that passes it is shape 3 (`implementation_type`).
+- **A value that is itself a class can't be an "instance," in either arity.** The `isinstance(x, type)` check above
+  has exactly one case it can't resolve correctly: registering a class object as _data_ (e.g. a plugin registry
+  whose "instance" of interest happens to be a `type`). Both `add_singleton(SomeClass)` and
+  `add_singleton(Registry, SomeClass)` always read `SomeClass` as something to instantiate, never as "the instance
+  to hand back verbatim." This is a narrow, acknowledged gap rather than a solved edge case; a factory
+  (`add_singleton(Registry, factory=lambda _: SomeClass)`) is the escape hatch, since a factory's return value is
+  never type-sniffed.
+- **`None` can be an instance in the one-argument form, but not the two-argument form.** In the two-argument form
+  this spec reuses `None` as the "nothing after `service_type`" default, so it can't simultaneously mean "the
+  instance is `None`" — the same reason C#'s nullable-vs-omitted distinction doesn't translate. The one-argument
+  form has no such sentinel, since its single parameter is mandatory: `add_singleton(None)` unambiguously means
+  "register the value `None`," and does so, under the key `NoneType`. It's an accepted, if not especially useful,
+  consequence of the mechanism rather than a case this spec had to design around.
 - **Lazy construction, not eager.** `constructor-injection` already established that `build_service_provider()`
   validates shape but constructs nothing; singletons keep that invariant rather than special-casing "build me now
   because I'm cached anyway." The alternative — construct every singleton during `build_service_provider()` — would

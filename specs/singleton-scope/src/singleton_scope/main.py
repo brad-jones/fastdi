@@ -47,6 +47,16 @@ class RequestCounter:
     return self.total
 
 
+class FeatureFlags:
+  """Built once by the caller, then registered under its own runtime type - no service_type needed."""
+
+  def __init__(self, dark_mode: bool) -> None:
+    self.dark_mode = dark_mode
+
+
+DEFAULT_FEATURE_FLAGS = FeatureFlags(dark_mode=True)
+
+
 class Database:
   """A leaf built from an environment-derived DSN, so it has to come from a factory."""
 
@@ -60,20 +70,30 @@ class Database:
 class RequestHandler:
   """Transient: a fresh handler per request, wired to the app's shared singletons."""
 
-  def __init__(self, config: AppConfig, clock: Clock, counter: RequestCounter, database: Database) -> None:
+  def __init__(
+    self,
+    config: AppConfig,
+    clock: Clock,
+    counter: RequestCounter,
+    database: Database,
+    flags: FeatureFlags,
+  ) -> None:
     self.config = config
     self.clock = clock
     self.counter = counter
     self.database = database
+    self.flags = flags
 
   def handle(self, path: str) -> str:
     request_number = self.counter.increment()
-    return f"[{self.config.service_name}/{self.config.region}] request #{request_number} for {path} at {self.clock.now()} via {self.database.describe()}"
+    mode = "dark" if self.flags.dark_mode else "light"
+    return f"[{self.config.service_name}/{self.config.region}] request #{request_number} for {path} at {self.clock.now()} via {self.database.describe()} ({mode} mode)"
 
 
 def build_provider() -> ServiceProvider:
   """Registers the whole app: one of each singleton registration shape, plus a transient consumer."""
   services = ServiceCollection()
+  services.add_singleton(DEFAULT_FEATURE_FLAGS)
   services.add_singleton(AppConfig, DEFAULT_APP_CONFIG)
   services.add_singleton(Clock, FixedClock)
   services.add_singleton(RequestCounter)
@@ -95,6 +115,7 @@ def main() -> None:
   print(f"...the same counter, now at {first.counter.total}: {first.counter is second.counter}")
   print(f"...the same database: {first.database is second.database}")
   print(f"...and the exact config instance the app registered: {first.config is DEFAULT_APP_CONFIG}")
+  print(f"...and the exact feature flags instance, registered with no explicit key: {first.flags is DEFAULT_FEATURE_FLAGS}")
 
 
 if __name__ == "__main__":
