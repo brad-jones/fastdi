@@ -441,6 +441,24 @@ deployments:
   content_hash: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
 - kind: project-relative
   target: agents
+  value: .agents/skills/create-rule
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: agents
+  value: .agents/skills/create-rule/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+- kind: project-relative
+  target: agents
   value: .agents/skills/create-spec
   runtime: null
   scope: project
@@ -456,7 +474,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:661855048133dc0061f93df340cb9d1b516de583517241c9c00c4bbce6719b84
+  content_hash: sha256:4347e6318dc4edde07ca439c5688dcd5aafde27b3110a4feb133653eacbd5972
 - kind: project-relative
   target: agents
   value: .agents/skills/execute-plan
@@ -474,7 +492,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:83baf3d84dc0540df7ea9a7a553302aa21bdb901f86ce55aff9916df967c5eff
+  content_hash: sha256:79439ae35616dbbdd858a1b30c1c62ffa6319fbbd32695bcece11aa3153181c3
 - kind: project-relative
   target: agents
   value: .agents/skills/lefthook
@@ -510,7 +528,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:6d2bc379f973b1cca9829f39e910d9466e6c203c2171ebf6004119ff2c854eaf
+  content_hash: sha256:4a7daad3af1d0748c45976cc2898c739ae1a6d60773764caf1b735de068e0cc1
 - kind: project-relative
   target: agents
   value: .agents/skills/task
@@ -529,6 +547,15 @@ deployments:
   - .
   active_owner: .
   content_hash: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+- kind: project-relative
+  target: claude
+  value: .claude/rules/fastdi-rules.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:e323aff964b2e1334b7a76f37d16cf10ac9eae20a693223c2cc7ef3853e8d314
 - kind: project-relative
   target: claude
   value: .claude/rules/workspace.md
@@ -927,6 +954,24 @@ deployments:
   content_hash: sha256:22f1a8af5c57a43cad032382217492162c039e8c7f99c71d84f5950af430a634
 - kind: project-relative
   target: claude
+  value: .claude/skills/create-rule
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/create-rule/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+- kind: project-relative
+  target: claude
   value: .claude/skills/create-spec
   runtime: null
   scope: project
@@ -942,7 +987,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:661855048133dc0061f93df340cb9d1b516de583517241c9c00c4bbce6719b84
+  content_hash: sha256:4347e6318dc4edde07ca439c5688dcd5aafde27b3110a4feb133653eacbd5972
 - kind: project-relative
   target: claude
   value: .claude/skills/execute-plan
@@ -960,7 +1005,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:83baf3d84dc0540df7ea9a7a553302aa21bdb901f86ce55aff9916df967c5eff
+  content_hash: sha256:79439ae35616dbbdd858a1b30c1c62ffa6319fbbd32695bcece11aa3153181c3
 - kind: project-relative
   target: claude
   value: .claude/skills/git-commit
@@ -1086,7 +1131,7 @@ deployments:
   owners:
   - .
   active_owner: .
-  content_hash: sha256:6d2bc379f973b1cca9829f39e910d9466e6c203c2171ebf6004119ff2c854eaf
+  content_hash: sha256:4a7daad3af1d0748c45976cc2898c739ae1a6d60773764caf1b735de068e0cc1
 - kind: project-relative
   target: claude
   value: .claude/skills/task
@@ -2052,6 +2097,15 @@ deployments:
   content_hash: sha256:ee93313bed51bda07c02fe33b8796d0b0e4e79eea43444426bd9a1b28490e7a4
 - kind: project-relative
   target: copilot
+  value: .github/instructions/fastdi-rules.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:1e5f38bc2a28a93e594a4bf7da834d50dd1e198a2af5e9ac50228db6790f8202
+- kind: project-relative
+  target: copilot
   value: .github/instructions/workspace.instructions.md
   runtime: null
   scope: project
@@ -2070,6 +2124,8 @@ local_deployed_files:
 - .agents/skills/cocogitto/SKILL.md
 - .agents/skills/cocogitto/references/changelog-templates.md
 - .agents/skills/cocogitto/references/config-reference.md
+- .agents/skills/create-rule
+- .agents/skills/create-rule/SKILL.md
 - .agents/skills/create-spec
 - .agents/skills/create-spec/SKILL.md
 - .agents/skills/execute-plan
@@ -2080,6 +2136,7 @@ local_deployed_files:
 - .agents/skills/plan-implementation/SKILL.md
 - .agents/skills/task
 - .agents/skills/task/SKILL.md
+- .claude/rules/fastdi-rules.md
 - .claude/rules/workspace.md
 - .claude/skills/adr
 - .claude/skills/adr/SKILL.md
@@ -2091,6 +2148,8 @@ local_deployed_files:
 - .claude/skills/cocogitto/SKILL.md
 - .claude/skills/cocogitto/references/changelog-templates.md
 - .claude/skills/cocogitto/references/config-reference.md
+- .claude/skills/create-rule
+- .claude/skills/create-rule/SKILL.md
 - .claude/skills/create-spec
 - .claude/skills/create-spec/SKILL.md
 - .claude/skills/execute-plan
@@ -2101,6 +2160,7 @@ local_deployed_files:
 - .claude/skills/plan-implementation/SKILL.md
 - .claude/skills/task
 - .claude/skills/task/SKILL.md
+- .github/instructions/fastdi-rules.instructions.md
 - .github/instructions/workspace.instructions.md
 local_deployed_file_hashes:
   .agents/skills/adr/SKILL.md: sha256:06ec72317c3ef7085b3c76d608a08bdb69af3ea9a6cfcc51a0fa71ff8fb53868
@@ -2110,11 +2170,13 @@ local_deployed_file_hashes:
   .agents/skills/cocogitto/SKILL.md: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
   .agents/skills/cocogitto/references/changelog-templates.md: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
   .agents/skills/cocogitto/references/config-reference.md: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
-  .agents/skills/create-spec/SKILL.md: sha256:661855048133dc0061f93df340cb9d1b516de583517241c9c00c4bbce6719b84
-  .agents/skills/execute-plan/SKILL.md: sha256:83baf3d84dc0540df7ea9a7a553302aa21bdb901f86ce55aff9916df967c5eff
+  .agents/skills/create-rule/SKILL.md: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+  .agents/skills/create-spec/SKILL.md: sha256:4347e6318dc4edde07ca439c5688dcd5aafde27b3110a4feb133653eacbd5972
+  .agents/skills/execute-plan/SKILL.md: sha256:79439ae35616dbbdd858a1b30c1c62ffa6319fbbd32695bcece11aa3153181c3
   .agents/skills/lefthook/SKILL.md: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
-  .agents/skills/plan-implementation/SKILL.md: sha256:6d2bc379f973b1cca9829f39e910d9466e6c203c2171ebf6004119ff2c854eaf
+  .agents/skills/plan-implementation/SKILL.md: sha256:4a7daad3af1d0748c45976cc2898c739ae1a6d60773764caf1b735de068e0cc1
   .agents/skills/task/SKILL.md: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+  .claude/rules/fastdi-rules.md: sha256:e323aff964b2e1334b7a76f37d16cf10ac9eae20a693223c2cc7ef3853e8d314
   .claude/rules/workspace.md: sha256:07549db0ead49a072be6bfa255f4c457ecbefa380130534a2b3ab65dd709d520
   .claude/skills/adr/SKILL.md: sha256:06ec72317c3ef7085b3c76d608a08bdb69af3ea9a6cfcc51a0fa71ff8fb53868
   .claude/skills/adr/references/adr-template-minimal.md: sha256:fdacd20ca99df002451fa8724e7b0b204c252604b586fafbfb60bbbf28a47a9f
@@ -2123,9 +2185,11 @@ local_deployed_file_hashes:
   .claude/skills/cocogitto/SKILL.md: sha256:5cd8de9b2146a8f7624be9e0b176ca8fb57e6a9a891233d59714537243f98167
   .claude/skills/cocogitto/references/changelog-templates.md: sha256:e6404f92f068281f7b718c119e67b5109e8d3bc3102bbf301bd4159f02bb46f9
   .claude/skills/cocogitto/references/config-reference.md: sha256:9a7af8520dca48ff5e600d1025ef248434d729525acfd7dac62c42d859475764
-  .claude/skills/create-spec/SKILL.md: sha256:661855048133dc0061f93df340cb9d1b516de583517241c9c00c4bbce6719b84
-  .claude/skills/execute-plan/SKILL.md: sha256:83baf3d84dc0540df7ea9a7a553302aa21bdb901f86ce55aff9916df967c5eff
+  .claude/skills/create-rule/SKILL.md: sha256:ffeb2adc86f8630f8b367476ac56a0736e225af92e1ce34ff7f840610930250e
+  .claude/skills/create-spec/SKILL.md: sha256:4347e6318dc4edde07ca439c5688dcd5aafde27b3110a4feb133653eacbd5972
+  .claude/skills/execute-plan/SKILL.md: sha256:79439ae35616dbbdd858a1b30c1c62ffa6319fbbd32695bcece11aa3153181c3
   .claude/skills/lefthook/SKILL.md: sha256:c9e39b9ddeea238d575a163add754a39e194d315c5ab83955ffb5059035cc435
-  .claude/skills/plan-implementation/SKILL.md: sha256:6d2bc379f973b1cca9829f39e910d9466e6c203c2171ebf6004119ff2c854eaf
+  .claude/skills/plan-implementation/SKILL.md: sha256:4a7daad3af1d0748c45976cc2898c739ae1a6d60773764caf1b735de068e0cc1
   .claude/skills/task/SKILL.md: sha256:bbb1bf79b41da2193cfef9e6652ea370c5cbaf71bca5b7473042bf8ab3a08326
+  .github/instructions/fastdi-rules.instructions.md: sha256:1e5f38bc2a28a93e594a4bf7da834d50dd1e198a2af5e9ac50228db6790f8202
   .github/instructions/workspace.instructions.md: sha256:044d97b1d897b731741e0ecb212f00b6781497a3e4c2097580d3f797ca3c2ef9

@@ -16,6 +16,11 @@ Read the description of the desired behavior the user gave you. If it's vague on
 public API shape (e.g. "should registration be a decorator or a method call?", "does this need scoped lifetimes or
 just singleton/transient?"), ask before scaffolding — a spec built on a guessed API surface just gets rewritten anyway.
 
+If what's being described is a constraint on _how_ FastDI is implemented rather than _what_ its API does — something
+with no public surface a user could call or observe — it isn't a spec. That's a rule: redirect to the `create-rule`
+skill, which writes it to `./docs/rules/`. A request that mixes both splits cleanly: spec the API here, and send the
+constraint to `create-rule`.
+
 If an existing spec under `./specs/` is being refined rather than created fresh, read its current `README.md`,
 `src/<name_with_underscores>/main.py`, and tests first, and edit them in place rather than starting over.
 

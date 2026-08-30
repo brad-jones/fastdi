@@ -1,12 +1,13 @@
 ---
 name: plan-implementation
-description: Read every spec under ./specs/ plus the current state of ./src/fastdi, and write a markdown implementation plan under ./docs/plans/ describing the diff needed to satisfy the specs. Use this after a spec has been created or changed and before writing any framework code. Writes a plan only — never edits ./specs/, ./src/fastdi, or ./tests directly.
+description: Read every spec under ./specs/ and every rule under ./docs/rules/, plus the current state of ./src/fastdi, and write a markdown implementation plan under ./docs/plans/ describing the diff needed to satisfy them. Use this after a spec or rule has been created or changed and before writing any framework code. Writes a plan only — never edits ./specs/, ./docs/rules/, ./src/fastdi, or ./tests directly.
 ---
 
 # plan-implementation
 
-This skill turns the spec-driven source of truth (`./specs/*`) into a concrete, reviewable plan for changing
-`./src/fastdi`. It produces a markdown document, nothing else. Actually writing the code is `execute-plan`'s job.
+This skill turns the spec-driven source of truth (`./specs/*`) and the rules that constrain how it's built
+(`./docs/rules/*`) into a concrete, reviewable plan for changing `./src/fastdi`. It produces a markdown document,
+nothing else. Actually writing the code is `execute-plan`'s job.
 
 ## 1. Gather the full picture
 
@@ -16,6 +17,9 @@ Read, in full:
   authoritative description of behavior; `main.py` and the tests show it concretely — cross-check them against the
   README for drift (a spec that's been hand-edited inconsistently is a defect to flag in the plan, not silently
   resolve).
+- Every `./docs/rules/*.md`. These are binding constraints on the code you're about to plan, not suggestions: a rule
+  takes precedence over the workspace instructions and over any APM-supplied skill (`coding-standards`, `testing`,
+  `tooling`) it contradicts. Where the rules are silent, those skills still apply as normal.
 - The current contents of `./src/fastdi` (every module, however small).
 - The current contents of `./tests/` (root framework-level suite), so the plan doesn't propose tests that already
   exist.
@@ -41,6 +45,19 @@ Where two specs imply overlapping or conflicting API shapes, reconcile them into
 plan that would make one spec pass at the expense of another silently regressing. If specs genuinely conflict (not
 just overlap), say so explicitly in the plan rather than picking a side unstated.
 
+Now constrain that design by the rules. Specs govern the _what_ — the public API and its observable behavior — and
+rules govern the _how_, so in the normal case they compose: the spec says a capability exists, and the rules narrow the
+set of acceptable implementations of it. Apply them to the `./tests/` additions too, not just `./src/fastdi`; a rule
+about how code is written usually has something to say about how it's tested. Where a rule rules out the obvious
+approach, plan the compliant one and say why in the plan, so `execute-plan` doesn't "fix" it back.
+
+If a rule and a spec genuinely can't both be satisfied — the rule forbids the only way to deliver an API the spec
+requires — stop and report it to the user instead of writing a plan, exactly as with a contradictory spec. Name the
+rule, the spec requirement, and why they can't coexist. You may not edit either, and neither may `execute-plan`, so
+either the rule needs narrowing via `create-rule` or the spec needs another `create-spec` pass. That's the user's call.
+A rule never wins by default just because rules outrank skills; that precedence is over ambient guidance, not over the
+specs.
+
 Then look past the specs to `./src/fastdi`'s own internal correctness and coverage: identify unit-level behavior that
 none of the specs exercise directly but that the implementation still needs to get right — error paths, boundary
 conditions, invariants an internal helper must uphold. These become the additional tests you plan for `./tests/`
@@ -59,11 +76,16 @@ status: draft
 date: <today, YYYY-MM-DD>
 completed:
 specs: [<name>, <name>, ...]
+rules: [<slug>, <slug>, ...]
 ---
 ```
 
 `specs:` must list every spec this plan is responsible for making pass — `execute-plan` uses exactly that list to
 decide which spec suites gate completion, so a spec left off it won't be verified.
+
+`rules:` lists the rules that materially shaped this plan, by slug, and may be empty. Unlike `specs:` it is provenance
+rather than a filter: `execute-plan` reads every rule under `./docs/rules/` regardless of what's listed here, so
+omitting one doesn't excuse the implementation from it.
 
 `status:` is the shared lifecycle both this skill and `execute-plan` read and write. It is the only vocabulary
 allowed:
@@ -80,8 +102,12 @@ Leave `completed:` empty at creation; `execute-plan` fills it with the date when
 
 Body structure:
 
-- **Context** — which spec(s) this plan satisfies, and why now (new spec, changed spec, or filling a coverage gap).
+- **Context** — which spec(s) this plan satisfies, and why now (new spec, changed spec, changed rule, or filling a
+  coverage gap).
 - **Current state** — what already exists in `./src/fastdi` relevant to this plan.
+- **Rules applied** — each rule that constrained the design, and the specific decision it drove. Omit the section only
+  when no rule bore on this plan at all. This is what stops a later reader (or `execute-plan`) from mistaking a
+  rule-mandated detour for an arbitrary one and undoing it.
 - **`./src/fastdi` changes** — concrete, file-by-file: what module to add/change, its public shape (classes,
   functions, signatures), and the behavior it must implement. Reference the spec section that requires each piece.
   Order this list so implementation can proceed top-to-bottom without hitting forward dependencies.
@@ -102,5 +128,5 @@ Keep it scannable: a reader should be able to tell what's changing without readi
 
 ## 4. Stop here
 
-Do not modify `./src/fastdi` or `./tests/`. Do not invoke `execute-plan` yourself. Tell the user the plan's path and a
-one-line summary of what it covers.
+Do not modify `./src/fastdi`, `./tests/`, `./specs/`, or `./docs/rules/`. Do not invoke `execute-plan` yourself. Tell
+the user the plan's path and a one-line summary of what it covers.
