@@ -26,7 +26,7 @@ jobs:
         run: task init
 
       - name: 📜 Lint Commit Messages
-        run: cog check
+        run: try_cog_check.py
 
       - name: 👮 Enforce our code quality
         run: task lint
