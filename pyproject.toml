@@ -59,4 +59,4 @@ extend-exclude = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "specs"]

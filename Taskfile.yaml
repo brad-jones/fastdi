@@ -85,8 +85,14 @@ tasks:
 
   test:
     desc: Runs our test suites to ensure our code is working as expected.
+    summary: |
+      Runs the framework suite in ./tests plus every spec suite under ./specs in one pass,
+      per `testpaths` in the root pyproject.toml.
+
+      Extra pytest arguments can be passed through after `--`, e.g.
+        task test -- -k transient -vv
     cmds:
-      - 'echo "TODO: Run your test suites here."'
+      - uv run pytest {{.CLI_ARGS}}
 
   package:
     desc: This is triggered by cog as a pre_bump_hook to generate all the final publishable artifacts
