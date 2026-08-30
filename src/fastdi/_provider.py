@@ -13,9 +13,23 @@ class ServiceProvider:
   """An immutable, fully validated snapshot of a `ServiceCollection`."""
 
   def __init__(self, plan: Mapping[type, ResolutionPlan], /) -> None:
+    """Wrap an already-validated resolution plan.
+
+    Not a supported construction path for callers: build a `ServiceProvider` via
+    `ServiceCollection.build_service_provider` instead.
+    """
     self._plan = plan
 
   def get_service[T](self, service_type: type[T], /) -> T | None:
+    """Resolve `service_type`, or return `None` if nothing is registered for it.
+
+    Args:
+      service_type: The type to resolve.
+
+    Returns:
+      A new instance of `service_type`, or `None` if it has no registration. Any other exception
+      raised while resolving a registered factory or constructor propagates unchanged.
+    """
     if service_type is ServiceProvider:
       return self  # type: ignore[return-value]
 
@@ -26,6 +40,17 @@ class ServiceProvider:
     return self._resolve(resolution)
 
   def get_required_service[T](self, service_type: type[T], /) -> T:
+    """Resolve `service_type`, raising if nothing is registered for it.
+
+    Args:
+      service_type: The type to resolve.
+
+    Returns:
+      A new instance of `service_type`.
+
+    Raises:
+      ServiceNotRegisteredError: If `service_type` has no registration.
+    """
     if service_type is ServiceProvider:
       return self  # type: ignore[return-value]
 

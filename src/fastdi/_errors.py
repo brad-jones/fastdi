@@ -10,7 +10,11 @@ class RegistrationError(FastDIError):
 
 
 class ServiceNotRegisteredError(FastDIError):
-  """`get_required_service` was called with an unregistered service type."""
+  """`get_required_service` was called with an unregistered service type.
+
+  Attributes:
+    service_type: The type that was requested but has no registration.
+  """
 
   service_type: type
 
@@ -20,7 +24,14 @@ class ServiceNotRegisteredError(FastDIError):
 
 
 class MissingDependencyError(FastDIError):
-  """A constructor parameter cannot be satisfied. Raised by `build_service_provider`."""
+  """A constructor parameter cannot be satisfied. Raised by `build_service_provider`.
+
+  Attributes:
+    service_type: The service whose constructor could not be satisfied.
+    implementation_type: The class whose `__init__` was being inspected.
+    parameter_name: The name of the unsatisfiable parameter.
+    parameter_type: The parameter's annotation, or `None` when it carries no annotation.
+  """
 
   service_type: type
   implementation_type: type
@@ -44,7 +55,11 @@ class MissingDependencyError(FastDIError):
 
 
 class CircularDependencyError(FastDIError):
-  """The registration graph contains a cycle. Raised by `build_service_provider`."""
+  """The registration graph contains a cycle. Raised by `build_service_provider`.
+
+  Attributes:
+    chain: The cycle, with the repeated service type at both ends.
+  """
 
   chain: tuple[type, ...]
 
