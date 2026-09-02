@@ -7,6 +7,7 @@ members = [
     "fastdi",
     "spec-constructor-injection",
     "spec-scoped-services",
+    "spec-service-disposal",
     "spec-singleton-scope",
 ]
 
@@ -154,6 +155,17 @@ requires-dist = [{ name = "fastdi", editable = "." }]
 name = "spec-scoped-services"
 version = "0.0.0"
 source = { virtual = "specs/scoped-services" }
+dependencies = [
+    { name = "fastdi" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "fastdi", editable = "." }]
+
+[[package]]
+name = "spec-service-disposal"
+version = "0.0.0"
+source = { virtual = "specs/service-disposal" }
 dependencies = [
     { name = "fastdi" },
 ]
